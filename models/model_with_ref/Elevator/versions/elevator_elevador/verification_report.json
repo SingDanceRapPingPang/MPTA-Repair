@@ -1,0 +1,32 @@
+{
+  "family": "Elevator",
+  "model_id": "elevator_elevador",
+  "source_model": "models\\model_with_ref\\Elevator\\Elevator\\elevador.xml",
+  "canonical_model": "models\\model_with_ref\\Elevator\\versions\\elevator_elevador\\model.xml",
+  "query_sources": [
+    "models\\model_with_ref\\Elevator\\Elevator\\elevador.q"
+  ],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "A[] not deadlock",
+      "status": "satisfied",
+      "duration_sec": 0.053,
+      "source": "models\\model_with_ref\\Elevator\\Elevator\\elevador.q"
+    },
+    {
+      "index": 2,
+      "formula": "A[] Elevator.First_Floor imply x>=2",
+      "status": "satisfied",
+      "duration_sec": 0.052,
+      "source": "models\\model_with_ref\\Elevator\\Elevator\\elevador.q"
+    },
+    {
+      "index": 3,
+      "formula": "A[] Door.idle imply (x>=2 and x<=5)",
+      "status": "satisfied",
+      "duration_sec": 0.05,
+      "source": "models\\model_with_ref\\Elevator\\Elevator\\elevador.q"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "family": "simop",
+  "model_id": "simop",
+  "source_model": "models\\model_with_ref\\simop\\simop.xta",
+  "canonical_model": "models\\model_with_ref\\simop\\versions\\simop\\model.xml",
+  "query_sources": [],
+  "properties": []
+}

@@ -1,0 +1,240 @@
+{
+  "root": "models\\model_with_ref",
+  "verifyta": "D:\\tool\\programming\\uppaal\\UPPAAL-5.0.0\\bin\\verifyta.exe",
+  "model_count": 17,
+  "families": {
+    "BangOlufsen": {
+      "versions": [
+        {
+          "model_id": "5bando",
+          "property_count": 5,
+          "satisfied_count": 4,
+          "unresolved_count": 1
+        }
+      ]
+    },
+    "csma_cd": {
+      "versions": [
+        {
+          "model_id": "2csma",
+          "property_count": 11,
+          "satisfied_count": 6,
+          "unresolved_count": 5
+        }
+      ]
+    },
+    "Elevator": {
+      "versions": [
+        {
+          "model_id": "3elevator",
+          "property_count": 2,
+          "satisfied_count": 2,
+          "unresolved_count": 0
+        },
+        {
+          "model_id": "elevator_elevador",
+          "property_count": 3,
+          "satisfied_count": 3,
+          "unresolved_count": 0
+        },
+        {
+          "model_id": "qostream_qos",
+          "property_count": 3,
+          "satisfied_count": 0,
+          "unresolved_count": 3
+        },
+        {
+          "model_id": "qostream_qos2_teste",
+          "property_count": 1,
+          "satisfied_count": 1,
+          "unresolved_count": 0
+        }
+      ]
+    },
+    "engine": {
+      "versions": [
+        {
+          "model_id": "engine",
+          "property_count": 49,
+          "satisfied_count": 49,
+          "unresolved_count": 0
+        }
+      ]
+    },
+    "FDDI": {
+      "versions": [
+        {
+          "model_id": "8fddi",
+          "property_count": 5,
+          "satisfied_count": 4,
+          "unresolved_count": 1
+        }
+      ]
+    },
+    "fischer": {
+      "versions": [
+        {
+          "model_id": "fischer_2_32_64",
+          "property_count": 2,
+          "satisfied_count": 2,
+          "unresolved_count": 0
+        }
+      ]
+    },
+    "lynch": {
+      "versions": [
+        {
+          "model_id": "lynch_2_16",
+          "property_count": 3,
+          "satisfied_count": 3,
+          "unresolved_count": 0
+        }
+      ]
+    },
+    "mutex": {
+      "versions": [
+        {
+          "model_id": "mutex",
+          "property_count": 4,
+          "satisfied_count": 4,
+          "unresolved_count": 0
+        }
+      ]
+    },
+    "Peacemaker": {
+      "versions": [
+        {
+          "model_id": "6pacemaker",
+          "property_count": 5,
+          "satisfied_count": 5,
+          "unresolved_count": 0
+        }
+      ]
+    },
+    "Philips Audio Protocol": {
+      "versions": [
+        {
+          "model_id": "bocdp",
+          "property_count": 4,
+          "satisfied_count": 4,
+          "unresolved_count": 0
+        }
+      ]
+    },
+    "simop": {
+      "versions": [
+        {
+          "model_id": "simop",
+          "property_count": 0,
+          "satisfied_count": 0,
+          "unresolved_count": 0
+        }
+      ]
+    },
+    "TarTarRepairedDB": {
+      "versions": [
+        {
+          "model_id": "0db2",
+          "property_count": 1,
+          "satisfied_count": 0,
+          "unresolved_count": 1
+        },
+        {
+          "model_id": "1repaireddb2",
+          "property_count": 1,
+          "satisfied_count": 1,
+          "unresolved_count": 0
+        }
+      ]
+    },
+    "train": {
+      "versions": [
+        {
+          "model_id": "trainahv93_2",
+          "property_count": 5,
+          "satisfied_count": 5,
+          "unresolved_count": 0
+        }
+      ]
+    }
+  },
+  "unresolved": [
+    {
+      "family": "BangOlufsen",
+      "model_id": "5bando",
+      "index": 2,
+      "formula": "A[] Sender_B.stop or Sender_B.end_jam or (B_c <= 28116)",
+      "status": "not_satisfied"
+    },
+    {
+      "family": "csma_cd",
+      "model_id": "2csma",
+      "index": 2,
+      "formula": "A[] not P1.sender_transm or (P1.x <= 52)",
+      "status": "not_satisfied"
+    },
+    {
+      "family": "csma_cd",
+      "model_id": "2csma",
+      "index": 3,
+      "formula": "A[] not P1.sender_collision_detected or (P1.x <= 2)",
+      "status": "error"
+    },
+    {
+      "family": "csma_cd",
+      "model_id": "2csma",
+      "index": 4,
+      "formula": "A[] not P1.sender_backoff or (P1.x <= 52)",
+      "status": "error"
+    },
+    {
+      "family": "csma_cd",
+      "model_id": "2csma",
+      "index": 5,
+      "formula": "A[] not P1.sender_collision_detected or (P1.x <= 8)",
+      "status": "error"
+    },
+    {
+      "family": "csma_cd",
+      "model_id": "2csma",
+      "index": 6,
+      "formula": "A[] not P1.sender_jam or not P2.sender_jam or (P1.x <= 8)",
+      "status": "error"
+    },
+    {
+      "family": "Elevator",
+      "model_id": "qostream_qos",
+      "index": 1,
+      "formula": "A[] Source.SEND imply x>=50",
+      "status": "timeout"
+    },
+    {
+      "family": "Elevator",
+      "model_id": "qostream_qos",
+      "index": 2,
+      "formula": "A[] Reciever.OK imply y>=5",
+      "status": "timeout"
+    },
+    {
+      "family": "Elevator",
+      "model_id": "qostream_qos",
+      "index": 3,
+      "formula": "A[] not deadlock",
+      "status": "not_satisfied"
+    },
+    {
+      "family": "FDDI",
+      "model_id": "8fddi",
+      "index": 5,
+      "formula": "A[] (ST1.station_z_idle imply ST1.y <= 200)",
+      "status": "not_satisfied"
+    },
+    {
+      "family": "TarTarRepairedDB",
+      "model_id": "0db2",
+      "index": 1,
+      "formula": "A[] not dbServer.serReceiving or (x <= 4)",
+      "status": "not_satisfied"
+    }
+  ]
+}

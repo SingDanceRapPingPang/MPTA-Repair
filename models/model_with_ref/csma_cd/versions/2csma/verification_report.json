@@ -1,0 +1,93 @@
+{
+  "family": "csma_cd",
+  "model_id": "2csma",
+  "source_model": "models\\model_with_ref\\csma_cd\\2csma.xml",
+  "canonical_model": "models\\model_with_ref\\csma_cd\\versions\\2csma\\model.xml",
+  "query_sources": [
+    "models\\model_with_ref\\csma_cd\\csma_ref.q"
+  ],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "A[] not P1.sender_transm or not P2.sender_transm or (P1.x < 52)",
+      "status": "satisfied",
+      "duration_sec": 0.048,
+      "source": "models\\model_with_ref\\csma_cd\\2csma.xml"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not P1.sender_transm or (P1.x <= 52)",
+      "status": "not_satisfied",
+      "duration_sec": 0.051,
+      "source": "models\\model_with_ref\\csma_cd\\csma_ref.q",
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_xnodipy5\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not P1.sender_collision_detected or (P1.x <= 2)",
+      "status": "error",
+      "duration_sec": 0.047,
+      "source": "models\\model_with_ref\\csma_cd\\csma_ref.q",
+      "output_tail": "models\\model_with_ref\\csma_cd\\versions\\2csma\\model.xml::1: [error] has no member named sender_collision_detected.\nmodels\\model_with_ref\\csma_cd\\versions\\2csma\\model.xml::1: [error] Type error.\n"
+    },
+    {
+      "index": 4,
+      "formula": "A[] not P1.sender_backoff or (P1.x <= 52)",
+      "status": "error",
+      "duration_sec": 0.05,
+      "source": "models\\model_with_ref\\csma_cd\\csma_ref.q",
+      "output_tail": "models\\model_with_ref\\csma_cd\\versions\\2csma\\model.xml::1: [error] has no member named sender_backoff.\nmodels\\model_with_ref\\csma_cd\\versions\\2csma\\model.xml::1: [error] Type error.\n"
+    },
+    {
+      "index": 5,
+      "formula": "A[] not P1.sender_collision_detected or (P1.x <= 8)",
+      "status": "error",
+      "duration_sec": 0.053,
+      "source": "models\\model_with_ref\\csma_cd\\csma_ref.q",
+      "output_tail": "models\\model_with_ref\\csma_cd\\versions\\2csma\\model.xml::1: [error] has no member named sender_collision_detected.\nmodels\\model_with_ref\\csma_cd\\versions\\2csma\\model.xml::1: [error] Type error.\n"
+    },
+    {
+      "index": 6,
+      "formula": "A[] not P1.sender_jam or not P2.sender_jam or (P1.x <= 8)",
+      "status": "error",
+      "duration_sec": 0.048,
+      "source": "models\\model_with_ref\\csma_cd\\csma_ref.q",
+      "output_tail": "models\\model_with_ref\\csma_cd\\versions\\2csma\\model.xml::1: [error] has no member named sender_jam.\nmodels\\model_with_ref\\csma_cd\\versions\\2csma\\model.xml::1: [error] has no member named sender_jam.\nmodels\\model_with_ref\\csma_cd\\versions\\2csma\\model.xml::1: [error] Type error.\nmodels\\model_with_ref\\csma_cd\\versions\\2csma\\model.xml::1: [error] Type error.\n"
+    },
+    {
+      "index": 7,
+      "formula": "A[] not P0.bus_collision1 or (P0.x < 26)",
+      "status": "satisfied",
+      "duration_sec": 0.051,
+      "source": "models\\model_with_ref\\csma_cd\\csma_ref.q"
+    },
+    {
+      "index": 8,
+      "formula": "A[] not P1.sender_transm or not P2.sender_transm or (P2.x < 52)",
+      "status": "satisfied",
+      "duration_sec": 0.05,
+      "source": "models\\model_with_ref\\csma_cd\\csma_ref.q"
+    },
+    {
+      "index": 9,
+      "formula": "A[] not P0.bus_active or (P0.x <= 808)",
+      "status": "satisfied",
+      "duration_sec": 0.051,
+      "source": "models\\model_with_ref\\csma_cd\\csma_ref.q"
+    },
+    {
+      "index": 10,
+      "formula": "A[] not P1.sender_retry or (P1.x < 52)",
+      "status": "satisfied",
+      "duration_sec": 0.053,
+      "source": "models\\model_with_ref\\csma_cd\\csma_ref.q"
+    },
+    {
+      "index": 11,
+      "formula": "A[] not P1.sender_transm or (p2t == 0) or (P1.x < 52)",
+      "status": "satisfied",
+      "duration_sec": 0.055,
+      "source": "models\\model_with_ref\\csma_cd\\csma_ref.q"
+    }
+  ]
+}

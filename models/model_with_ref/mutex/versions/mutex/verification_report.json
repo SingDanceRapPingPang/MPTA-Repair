@@ -1,0 +1,40 @@
+{
+  "family": "mutex",
+  "model_id": "mutex",
+  "source_model": "models\\model_with_ref\\mutex\\mutex.xta",
+  "canonical_model": "models\\model_with_ref\\mutex\\versions\\mutex\\model.xml",
+  "query_sources": [
+    "models\\model_with_ref\\mutex\\mutex.q",
+    "models\\model_with_ref\\mutex\\mutex_ref.q"
+  ],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "E<> (S1.I_am_unsafe and S2.I_am_unsafe)",
+      "status": "satisfied",
+      "duration_sec": 0.155,
+      "source": "models\\model_with_ref\\mutex\\mutex.q"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not Ctrl.wait_for_s2 or (Ctrl_z <= 1000)",
+      "status": "satisfied",
+      "duration_sec": 0.279,
+      "source": "models\\model_with_ref\\mutex\\mutex_ref.q"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not Ctrl.g1 or (Ctrl_z <= 1000)",
+      "status": "satisfied",
+      "duration_sec": 0.253,
+      "source": "models\\model_with_ref\\mutex\\mutex_ref.q"
+    },
+    {
+      "index": 4,
+      "formula": "A[] not S1.I_am_safe or (S1_z <= 1000)",
+      "status": "satisfied",
+      "duration_sec": 0.259,
+      "source": "models\\model_with_ref\\mutex\\mutex_ref.q"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "family": "Peacemaker",
+  "model_id": "6pacemaker",
+  "source_model": "models\\model_with_ref\\Peacemaker\\6Pacemaker.xml",
+  "canonical_model": "models\\model_with_ref\\Peacemaker\\versions\\6pacemaker\\model.xml",
+  "query_sources": [
+    "models\\model_with_ref\\Peacemaker\\pacemaker_ref.q"
+  ],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "A[] not Pvv.two_a or (Pvv.t <= TLRI)",
+      "status": "satisfied",
+      "duration_sec": 0.063,
+      "source": "models\\model_with_ref\\Peacemaker\\6Pacemaker.xml"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not PURI_test.interval or (PURI_test.t >= TURI)",
+      "status": "satisfied",
+      "duration_sec": 0.066,
+      "source": "models\\model_with_ref\\Peacemaker\\pacemaker_ref.q"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not PAVI.AVI or (PAVI.t <= TAVI)",
+      "status": "satisfied",
+      "duration_sec": 0.096,
+      "source": "models\\model_with_ref\\Peacemaker\\pacemaker_ref.q"
+    },
+    {
+      "index": 4,
+      "formula": "A[] not PPVARP.PVAB or (PPVARP.t <= TPVAB)",
+      "status": "satisfied",
+      "duration_sec": 0.06,
+      "source": "models\\model_with_ref\\Peacemaker\\pacemaker_ref.q"
+    },
+    {
+      "index": 5,
+      "formula": "A[] not PVRP.VRP or (PVRP.t <= TVRP)",
+      "status": "satisfied",
+      "duration_sec": 0.061,
+      "source": "models\\model_with_ref\\Peacemaker\\pacemaker_ref.q"
+    }
+  ]
+}

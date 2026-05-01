@@ -1,0 +1,47 @@
+{
+  "family": "FDDI",
+  "model_id": "8fddi",
+  "source_model": "models\\model_with_ref\\FDDI\\8FDDI.xml",
+  "canonical_model": "models\\model_with_ref\\FDDI\\versions\\8fddi\\model.xml",
+  "query_sources": [
+    "models\\model_with_ref\\FDDI\\FDDI_ref.q"
+  ],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "A[] (ST1.x <= 140)",
+      "status": "satisfied",
+      "duration_sec": 0.06,
+      "source": "models\\model_with_ref\\FDDI\\8FDDI.xml"
+    },
+    {
+      "index": 2,
+      "formula": "A[] (ST2.x <= 140)",
+      "status": "satisfied",
+      "duration_sec": 0.059,
+      "source": "models\\model_with_ref\\FDDI\\FDDI_ref.q"
+    },
+    {
+      "index": 3,
+      "formula": "A[] (ST1.station_z_idle or ST1.station_y_idle) or (ST2.station_z_idle or ST2.station_y_idle)",
+      "status": "satisfied",
+      "duration_sec": 0.055,
+      "source": "models\\model_with_ref\\FDDI\\FDDI_ref.q"
+    },
+    {
+      "index": 4,
+      "formula": "A[] not (ST1.station_z_idle or ST1.station_y_idle) imply (ST1.x <= 120)",
+      "status": "satisfied",
+      "duration_sec": 0.055,
+      "source": "models\\model_with_ref\\FDDI\\FDDI_ref.q"
+    },
+    {
+      "index": 5,
+      "formula": "A[] (ST1.station_z_idle imply ST1.y <= 200)",
+      "status": "not_satisfied",
+      "duration_sec": 0.053,
+      "source": "models\\model_with_ref\\FDDI\\FDDI_ref.q",
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_f4g7h1s5\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

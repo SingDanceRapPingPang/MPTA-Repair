@@ -1,0 +1,17 @@
+{
+  "family": "TarTarRepairedDB",
+  "model_id": "0db2",
+  "source_model": "models\\model_with_ref\\TarTarRepairedDB\\0db2.xml",
+  "canonical_model": "models\\model_with_ref\\TarTarRepairedDB\\versions\\0db2\\model.xml",
+  "query_sources": [],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "A[] not dbServer.serReceiving or (x <= 4)",
+      "status": "not_satisfied",
+      "duration_sec": 0.051,
+      "source": "models\\model_with_ref\\TarTarRepairedDB\\0db2.xml",
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_1ja4sii0\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

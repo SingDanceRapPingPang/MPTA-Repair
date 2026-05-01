@@ -1,0 +1,16 @@
+{
+  "family": "TarTarRepairedDB",
+  "model_id": "1repaireddb2",
+  "source_model": "models\\model_with_ref\\TarTarRepairedDB\\1repairedDB2.xml",
+  "canonical_model": "models\\model_with_ref\\TarTarRepairedDB\\versions\\1repaireddb2\\model.xml",
+  "query_sources": [],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "A[] not client.serReceiving or (x <= 4)",
+      "status": "satisfied",
+      "duration_sec": 0.053,
+      "source": "models\\model_with_ref\\TarTarRepairedDB\\1repairedDB2.xml"
+    }
+  ]
+}

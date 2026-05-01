@@ -1,0 +1,35 @@
+{
+  "family": "Elevator",
+  "model_id": "qostream_qos",
+  "source_model": "models\\model_with_ref\\Elevator\\QOStream\\QOS.xml",
+  "canonical_model": "models\\model_with_ref\\Elevator\\versions\\qostream_qos\\model.xml",
+  "query_sources": [
+    "models\\model_with_ref\\Elevator\\QOStream\\QOS.q"
+  ],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "A[] Source.SEND imply x>=50",
+      "status": "timeout",
+      "duration_sec": 90,
+      "source": "models\\model_with_ref\\Elevator\\QOStream\\QOS.q",
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_nf9uefk0\\property.q:1\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] Reciever.OK imply y>=5",
+      "status": "timeout",
+      "duration_sec": 90,
+      "source": "models\\model_with_ref\\Elevator\\QOStream\\QOS.q",
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_fbn1h6nu\\property.q:1\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not deadlock",
+      "status": "not_satisfied",
+      "duration_sec": 0.051,
+      "source": "models\\model_with_ref\\Elevator\\QOStream\\QOS.q",
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_gmhufa4q\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

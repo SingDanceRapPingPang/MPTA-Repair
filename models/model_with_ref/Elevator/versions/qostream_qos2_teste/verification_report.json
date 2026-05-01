@@ -1,0 +1,16 @@
+{
+  "family": "Elevator",
+  "model_id": "qostream_qos2_teste",
+  "source_model": "models\\model_with_ref\\Elevator\\QOStream\\QOS2_teste.xml",
+  "canonical_model": "models\\model_with_ref\\Elevator\\versions\\qostream_qos2_teste\\model.xml",
+  "query_sources": [],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "A[] not deadlock",
+      "status": "satisfied",
+      "duration_sec": 0.057,
+      "source": "models\\model_with_ref\\Elevator\\QOStream\\QOS2_teste.xml"
+    }
+  ]
+}

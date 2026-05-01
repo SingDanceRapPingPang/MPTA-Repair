@@ -1,0 +1,25 @@
+{
+  "family": "fischer",
+  "model_id": "fischer_2_32_64",
+  "source_model": "models\\model_with_ref\\fischer\\fischer-2-32-64.xta",
+  "canonical_model": "models\\model_with_ref\\fischer\\versions\\fischer_2_32_64\\model.xml",
+  "query_sources": [
+    "models\\model_with_ref\\fischer\\fischer_ref.q"
+  ],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "A[] P(1).cs imply P(1).x >= 64",
+      "status": "satisfied",
+      "duration_sec": 0.059,
+      "source": "models\\model_with_ref\\fischer\\fischer_ref.q"
+    },
+    {
+      "index": 2,
+      "formula": "A[] P(1).req imply P(1).x <= 32",
+      "status": "satisfied",
+      "duration_sec": 0.055,
+      "source": "models\\model_with_ref\\fischer\\fischer_ref.q"
+    }
+  ]
+}

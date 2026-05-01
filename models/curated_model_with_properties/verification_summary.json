@@ -1,0 +1,340 @@
+{
+  "output_root": "models\\curated_model_with_properties",
+  "verifyta": "D:\\tool\\programming\\uppaal\\UPPAAL-5.0.0\\bin\\verifyta.exe",
+  "models": [
+    {
+      "family": "BangOlufsen",
+      "version_id": "5bando",
+      "model": "models\\curated_model_with_properties\\BangOlufsen\\5bando\\model.xml",
+      "properties": "models\\curated_model_with_properties\\BangOlufsen\\5bando\\5bando_ref.q",
+      "property_count": 3,
+      "satisfied_count": 3,
+      "results": [
+        {
+          "index": 1,
+          "formula": "A[] Sender_A.stop or Sender_A.end_jam or (A_c <= 28116)",
+          "status": "satisfied",
+          "duration_sec": 0.988
+        },
+        {
+          "index": 2,
+          "formula": "A[] not Sender_A.jam or (A_c <= 25000)",
+          "status": "satisfied",
+          "duration_sec": 1.004
+        },
+        {
+          "index": 3,
+          "formula": "A[] not Sender_B.newPn or (B_c <= 40)",
+          "status": "satisfied",
+          "duration_sec": 0.967
+        }
+      ]
+    },
+    {
+      "family": "csma_cd",
+      "version_id": "2csma",
+      "model": "models\\curated_model_with_properties\\csma_cd\\2csma\\model.xml",
+      "properties": "models\\curated_model_with_properties\\csma_cd\\2csma\\2csma_ref.q",
+      "property_count": 3,
+      "satisfied_count": 3,
+      "results": [
+        {
+          "index": 1,
+          "formula": "A[] not P1.sender_transm or not P2.sender_transm or (P1.x < 52)",
+          "status": "satisfied",
+          "duration_sec": 0.053
+        },
+        {
+          "index": 2,
+          "formula": "A[] not P0.bus_collision1 or (P0.x < 26)",
+          "status": "satisfied",
+          "duration_sec": 0.049
+        },
+        {
+          "index": 3,
+          "formula": "A[] not P1.sender_transm or (p2t == 0) or (P1.x < 52)",
+          "status": "satisfied",
+          "duration_sec": 0.048
+        }
+      ]
+    },
+    {
+      "family": "Elevator",
+      "version_id": "3elevator",
+      "model": "models\\curated_model_with_properties\\Elevator\\3elevator\\model.xml",
+      "properties": "models\\curated_model_with_properties\\Elevator\\3elevator\\3elevator_ref.q",
+      "property_count": 2,
+      "satisfied_count": 2,
+      "results": [
+        {
+          "index": 1,
+          "formula": "A[] not Door.idle or (x>=2 and x<=5)",
+          "status": "satisfied",
+          "duration_sec": 0.049
+        },
+        {
+          "index": 2,
+          "formula": "A[] not Elevator.First_Floor or (x>=2)",
+          "status": "satisfied",
+          "duration_sec": 0.048
+        }
+      ]
+    },
+    {
+      "family": "engine",
+      "version_id": "engine",
+      "model": "models\\curated_model_with_properties\\engine\\engine\\model.xml",
+      "properties": "models\\curated_model_with_properties\\engine\\engine\\engine_ref.q",
+      "property_count": 3,
+      "satisfied_count": 3,
+      "results": [
+        {
+          "index": 1,
+          "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 0 or (SysTimer <= 1000)",
+          "status": "satisfied",
+          "duration_sec": 0.054
+        },
+        {
+          "index": 2,
+          "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or (SysTimer <= 1500)",
+          "status": "satisfied",
+          "duration_sec": 0.056
+        },
+        {
+          "index": 3,
+          "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 1 or (SysTimer <= 1055)",
+          "status": "satisfied",
+          "duration_sec": 0.063
+        }
+      ]
+    },
+    {
+      "family": "FDDI",
+      "version_id": "8fddi",
+      "model": "models\\curated_model_with_properties\\FDDI\\8fddi\\model.xml",
+      "properties": "models\\curated_model_with_properties\\FDDI\\8fddi\\8fddi_ref.q",
+      "property_count": 3,
+      "satisfied_count": 3,
+      "results": [
+        {
+          "index": 1,
+          "formula": "A[] (ST1.x <= 140)",
+          "status": "satisfied",
+          "duration_sec": 0.048
+        },
+        {
+          "index": 2,
+          "formula": "A[] (ST1.station_z_idle or ST1.station_y_idle) or (ST2.station_z_idle or ST2.station_y_idle)",
+          "status": "satisfied",
+          "duration_sec": 0.052
+        },
+        {
+          "index": 3,
+          "formula": "A[] not (ST1.station_z_idle or ST1.station_y_idle) imply (ST1.x <= 120)",
+          "status": "satisfied",
+          "duration_sec": 0.055
+        }
+      ]
+    },
+    {
+      "family": "fischer",
+      "version_id": "fischer_2_32_64",
+      "model": "models\\curated_model_with_properties\\fischer\\fischer_2_32_64\\model.xml",
+      "properties": "models\\curated_model_with_properties\\fischer\\fischer_2_32_64\\fischer_2_32_64_ref.q",
+      "property_count": 2,
+      "satisfied_count": 2,
+      "results": [
+        {
+          "index": 1,
+          "formula": "A[] P(1).cs imply P(1).x >= 64",
+          "status": "satisfied",
+          "duration_sec": 0.048
+        },
+        {
+          "index": 2,
+          "formula": "A[] P(1).req imply P(1).x <= 32",
+          "status": "satisfied",
+          "duration_sec": 0.05
+        }
+      ]
+    },
+    {
+      "family": "lynch",
+      "version_id": "lynch_2_16",
+      "model": "models\\curated_model_with_properties\\lynch\\lynch_2_16\\model.xml",
+      "properties": "models\\curated_model_with_properties\\lynch\\lynch_2_16\\lynch_2_16_ref.q",
+      "property_count": 3,
+      "satisfied_count": 3,
+      "results": [
+        {
+          "index": 1,
+          "formula": "A[] not P(1).L2 or (P(1).c <= T)",
+          "status": "satisfied",
+          "duration_sec": 0.05
+        },
+        {
+          "index": 2,
+          "formula": "A[] not P(1).L8 or (P(1).c <= T)",
+          "status": "satisfied",
+          "duration_sec": 0.05
+        },
+        {
+          "index": 3,
+          "formula": "A[] not P(1).L5 or (P(1).c <= T)",
+          "status": "satisfied",
+          "duration_sec": 0.046
+        }
+      ]
+    },
+    {
+      "family": "mutex",
+      "version_id": "mutex",
+      "model": "models\\curated_model_with_properties\\mutex\\mutex\\model.xml",
+      "properties": "models\\curated_model_with_properties\\mutex\\mutex\\mutex_ref.q",
+      "property_count": 3,
+      "satisfied_count": 3,
+      "results": [
+        {
+          "index": 1,
+          "formula": "A[] not Ctrl.wait_for_s2 or (Ctrl_z <= 1000)",
+          "status": "satisfied",
+          "duration_sec": 0.226
+        },
+        {
+          "index": 2,
+          "formula": "A[] not Ctrl.g1 or (Ctrl_z <= 1000)",
+          "status": "satisfied",
+          "duration_sec": 0.239
+        },
+        {
+          "index": 3,
+          "formula": "A[] not S1.I_am_safe or (S1_z <= 1000)",
+          "status": "satisfied",
+          "duration_sec": 0.228
+        }
+      ]
+    },
+    {
+      "family": "Peacemaker",
+      "version_id": "6pacemaker",
+      "model": "models\\curated_model_with_properties\\Peacemaker\\6pacemaker\\model.xml",
+      "properties": "models\\curated_model_with_properties\\Peacemaker\\6pacemaker\\6pacemaker_ref.q",
+      "property_count": 3,
+      "satisfied_count": 3,
+      "results": [
+        {
+          "index": 1,
+          "formula": "A[] not PURI_test.interval or (PURI_test.t >= TURI)",
+          "status": "satisfied",
+          "duration_sec": 0.054
+        },
+        {
+          "index": 2,
+          "formula": "A[] not PAVI.AVI or (PAVI.t <= TAVI)",
+          "status": "satisfied",
+          "duration_sec": 0.082
+        },
+        {
+          "index": 3,
+          "formula": "A[] not PVRP.VRP or (PVRP.t <= TVRP)",
+          "status": "satisfied",
+          "duration_sec": 0.058
+        }
+      ]
+    },
+    {
+      "family": "Philips_Audio_Protocol",
+      "version_id": "bocdp",
+      "model": "models\\curated_model_with_properties\\Philips_Audio_Protocol\\bocdp\\model.xml",
+      "properties": "models\\curated_model_with_properties\\Philips_Audio_Protocol\\bocdp\\bocdp_ref.q",
+      "property_count": 3,
+      "satisfied_count": 3,
+      "results": [
+        {
+          "index": 1,
+          "formula": "A[] not Sender_A.transmit or not Sender_B.transmit or (A_c <= 781)",
+          "status": "satisfied",
+          "duration_sec": 0.179
+        },
+        {
+          "index": 2,
+          "formula": "A[] not Sender_A.hold or (A_c <= 28116)",
+          "status": "satisfied",
+          "duration_sec": 0.178
+        },
+        {
+          "index": 3,
+          "formula": "A[] not Sender_A.jam or not Sender_B.jam or (A_c <= 25000)",
+          "status": "satisfied",
+          "duration_sec": 0.191
+        }
+      ]
+    },
+    {
+      "family": "simop",
+      "version_id": "simop",
+      "model": "models\\curated_model_with_properties\\simop\\simop\\model.xml",
+      "properties": "models\\curated_model_with_properties\\simop\\simop\\simop_ref.q",
+      "property_count": 2,
+      "satisfied_count": 2,
+      "results": [
+        {
+          "index": 1,
+          "formula": "E<> COM.COM4",
+          "status": "satisfied",
+          "duration_sec": 0.053
+        },
+        {
+          "index": 2,
+          "formula": "E<> RIO.RIO5",
+          "status": "satisfied",
+          "duration_sec": 0.053
+        }
+      ]
+    },
+    {
+      "family": "TarTarRepairedDB",
+      "version_id": "1repaireddb2",
+      "model": "models\\curated_model_with_properties\\TarTarRepairedDB\\1repaireddb2\\model.xml",
+      "properties": "models\\curated_model_with_properties\\TarTarRepairedDB\\1repaireddb2\\1repaireddb2_ref.q",
+      "property_count": 1,
+      "satisfied_count": 1,
+      "results": [
+        {
+          "index": 1,
+          "formula": "A[] not client.serReceiving or (x <= 4)",
+          "status": "satisfied",
+          "duration_sec": 0.049
+        }
+      ]
+    },
+    {
+      "family": "train",
+      "version_id": "trainahv93_2",
+      "model": "models\\curated_model_with_properties\\train\\trainahv93_2\\model.xml",
+      "properties": "models\\curated_model_with_properties\\train\\trainahv93_2\\trainahv93_2_ref.q",
+      "property_count": 3,
+      "satisfied_count": 3,
+      "results": [
+        {
+          "index": 1,
+          "formula": "A[] not (controller.controller3 && cnt>0)",
+          "status": "satisfied",
+          "duration_sec": 0.052
+        },
+        {
+          "index": 2,
+          "formula": "A[] not (gate.gate1 && (train(1).train2 or train(1).train3))",
+          "status": "satisfied",
+          "duration_sec": 0.051
+        },
+        {
+          "index": 3,
+          "formula": "A[] not (train(1).train1 && gate.gate0) or (train(1).x <= 2)",
+          "status": "satisfied",
+          "duration_sec": 0.051
+        }
+      ]
+    }
+  ]
+}

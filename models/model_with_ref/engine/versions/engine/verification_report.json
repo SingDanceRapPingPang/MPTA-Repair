@@ -1,0 +1,355 @@
+{
+  "family": "engine",
+  "model_id": "engine",
+  "source_model": "models\\model_with_ref\\engine\\engine.xta",
+  "canonical_model": "models\\model_with_ref\\engine\\versions\\engine\\model.xml",
+  "query_sources": [
+    "models\\model_with_ref\\engine\\engine.q",
+    "models\\model_with_ref\\engine\\engine_ref.q"
+  ],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "E<> GearControl.GearChanged",
+      "status": "satisfied",
+      "duration_sec": 0.058,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 2,
+      "formula": "E<> Interface.Gear5",
+      "status": "satisfied",
+      "duration_sec": 0.059,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 3,
+      "formula": "E<> Interface.GearR",
+      "status": "satisfied",
+      "duration_sec": 0.062,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 4,
+      "formula": "E<> ( GearControl.GearChanged and ( SysTimer<=1000 ) )",
+      "status": "satisfied",
+      "duration_sec": 0.058,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 5,
+      "formula": "A[] not ( GearBox.Neutral and ( Interface.Gear1 or Interface.Gear2 or Interface.Gear3 or Interface.Gear4 or Interface.Gear5 or Interface.GearR ) )",
+      "status": "satisfied",
+      "duration_sec": 0.058,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 6,
+      "formula": "A[] not ( GearBox.Idle and Interface.GearN )",
+      "status": "satisfied",
+      "duration_sec": 0.058,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 7,
+      "formula": "A[] ( Interface.GearN imply GearBox.Neutral )",
+      "status": "satisfied",
+      "duration_sec": 0.057,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 8,
+      "formula": "A[] ( ( ErrStat==0 and UseCase==0 and SysTimer>=900 ) imply ( GearControl.GearChanged or GearControl.Gear ) )",
+      "status": "satisfied",
+      "duration_sec": 0.058,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 9,
+      "formula": "E<> ( ErrStat==0 and UseCase==0 and SysTimer>899 and SysTimer<900 and not ( GearControl.GearChanged or GearControl.Gear ) )",
+      "status": "satisfied",
+      "duration_sec": 0.061,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 10,
+      "formula": "A[] ( ( ErrStat==0 and UseCase==0 and ( SysTimer<150 ) ) imply not ( GearControl.GearChanged ) )",
+      "status": "satisfied",
+      "duration_sec": 0.056,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 11,
+      "formula": "E<> ( ErrStat==0 and UseCase==0 and GearControl.GearChanged and ( SysTimer==150 ) )",
+      "status": "satisfied",
+      "duration_sec": 0.055,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 12,
+      "formula": "A[] ( ( ErrStat==0 and UseCase==0 and FromGear>0 and ToGear>0 and ( SysTimer<400 ) ) imply not ( GearControl.GearChanged ) )",
+      "status": "satisfied",
+      "duration_sec": 0.057,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 13,
+      "formula": "E<> ( ErrStat==0 and UseCase==0 and FromGear>0 and ToGear>0 and GearControl.GearChanged and ( SysTimer==400 ) )",
+      "status": "satisfied",
+      "duration_sec": 0.056,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 14,
+      "formula": "A[] ( ( ErrStat==0 and UseCase==1 and SysTimer>1055 ) imply ( GearControl.GearChanged or GearControl.Gear ) )",
+      "status": "satisfied",
+      "duration_sec": 0.057,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 15,
+      "formula": "E<> ( ErrStat==0 and UseCase==1 and SysTimer==1055 and not ( GearControl.GearChanged or GearControl.Gear ) )",
+      "status": "satisfied",
+      "duration_sec": 0.057,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 16,
+      "formula": "A[] ( ( ErrStat==0 and UseCase==1 and SysTimer<550 ) imply not ( GearControl.GearChanged or GearControl.Gear ) )",
+      "status": "satisfied",
+      "duration_sec": 0.058,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 17,
+      "formula": "E<> ( ErrStat==0 and UseCase==1 and GearControl.GearChanged and ( SysTimer==550 ) )",
+      "status": "satisfied",
+      "duration_sec": 0.057,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 18,
+      "formula": "A[] ( ( ErrStat==0 and UseCase==1 and FromGear>0 and ToGear>0 and SysTimer<700 ) imply not ( GearControl.GearChanged and GearControl.Gear ) )",
+      "status": "satisfied",
+      "duration_sec": 0.059,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 19,
+      "formula": "E<> ( ErrStat==0 and UseCase==1 and FromGear>0 and ToGear>0 and GearControl.GearChanged and ( SysTimer==700 ) )",
+      "status": "satisfied",
+      "duration_sec": 0.058,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 20,
+      "formula": "A[] ( ( ErrStat==0 and UseCase==2 and SysTimer>=1205 ) imply ( GearControl.GearChanged or GearControl.Gear ) )",
+      "status": "satisfied",
+      "duration_sec": 0.057,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 21,
+      "formula": "E<> ( ErrStat==0 and UseCase==2 and SysTimer>1204 and SysTimer<1205 and not ( GearControl.GearChanged or GearControl.Gear ) )",
+      "status": "satisfied",
+      "duration_sec": 0.057,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 22,
+      "formula": "A[] ( ( UseCase==2 and ( SysTimer<450 ) ) imply not ( GearControl.GearChanged or GearControl.Gear ) )",
+      "status": "satisfied",
+      "duration_sec": 0.055,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 23,
+      "formula": "E<> ( UseCase==2 and GearControl.GearChanged and ( SysTimer==450 ) )",
+      "status": "satisfied",
+      "duration_sec": 0.055,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 24,
+      "formula": "A[] ( ( ErrStat==0 and UseCase==2 and FromGear>0 and ToGear>0 and SysTimer<750 ) imply not ( GearControl.GearChanged and GearControl.Gear ) )",
+      "status": "satisfied",
+      "duration_sec": 0.057,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 25,
+      "formula": "E<> ( ErrStat==0 and UseCase==2 and FromGear>0 and ToGear>0 and GearControl.GearChanged and ( SysTimer==750 ) )",
+      "status": "satisfied",
+      "duration_sec": 0.056,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 26,
+      "formula": "A[] ( ( Clutch.ErrorClose and ( GCTimer>200 ) ) imply GearControl.CCloseError )",
+      "status": "satisfied",
+      "duration_sec": 0.055,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 27,
+      "formula": "A[] ( GearControl.CCloseError imply Clutch.ErrorClose )",
+      "status": "satisfied",
+      "duration_sec": 0.057,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 28,
+      "formula": "A[] ( ( Clutch.ErrorOpen and ( GCTimer>200 ) ) imply GearControl.COpenError )",
+      "status": "satisfied",
+      "duration_sec": 0.058,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 29,
+      "formula": "A[] ( ( GearControl.COpenError ) imply Clutch.ErrorOpen )",
+      "status": "satisfied",
+      "duration_sec": 0.055,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 30,
+      "formula": "A[] ( ( GearBox.ErrorIdle and ( GCTimer>350 ) ) imply GearControl.GSetError )",
+      "status": "satisfied",
+      "duration_sec": 0.059,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 31,
+      "formula": "A[] ( ( GearControl.GSetError ) imply GearBox.ErrorIdle )",
+      "status": "satisfied",
+      "duration_sec": 0.056,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 32,
+      "formula": "A[] ( ( GearBox.ErrorNeu and ( GCTimer>200 ) ) imply GearControl.GNeuError )",
+      "status": "satisfied",
+      "duration_sec": 0.061,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 33,
+      "formula": "A[] ( ( GearControl.GNeuError ) imply GearBox.ErrorNeu )",
+      "status": "satisfied",
+      "duration_sec": 0.058,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 34,
+      "formula": "A[] not ( ErrStat==0 and Engine.ErrorSpeed )",
+      "status": "satisfied",
+      "duration_sec": 0.06,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 35,
+      "formula": "A[] ( Interface.GearN imply ( ( ToGear==0 and Engine.Zero ) or Engine.Initial ) )",
+      "status": "satisfied",
+      "duration_sec": 0.061,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 36,
+      "formula": "A[] ( ( GearControl.Gear and Interface.GearR ) imply Engine.Torque )",
+      "status": "satisfied",
+      "duration_sec": 0.063,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 37,
+      "formula": "A[] ( ( GearControl.Gear and Interface.Gear1 ) imply Engine.Torque )",
+      "status": "satisfied",
+      "duration_sec": 0.062,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 38,
+      "formula": "A[] ( ( GearControl.Gear and Interface.Gear2 ) imply Engine.Torque )",
+      "status": "satisfied",
+      "duration_sec": 0.06,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 39,
+      "formula": "A[] ( ( GearControl.Gear and Interface.Gear3 ) imply Engine.Torque )",
+      "status": "satisfied",
+      "duration_sec": 0.059,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 40,
+      "formula": "A[] ( ( GearControl.Gear and Interface.Gear4 ) imply Engine.Torque )",
+      "status": "satisfied",
+      "duration_sec": 0.062,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 41,
+      "formula": "A[] ( ( GearControl.Gear and Interface.Gear5 ) imply Engine.Torque )",
+      "status": "satisfied",
+      "duration_sec": 0.06,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 42,
+      "formula": "A[] ( Clutch.Open imply ( GearControl.ClutchOpen or GearControl.ClutchOpen2 or GearControl.CheckGearSet2 or GearControl.ReqSetGear2 or GearControl.GNeuError or GearControl.ClutchClose or GearControl.CheckClutchClosed or GearControl.CheckClutchClosed2 or GearControl.CCloseError or GearControl.GSetError or GearControl.CheckGearNeu2 ) )",
+      "status": "satisfied",
+      "duration_sec": 0.064,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 43,
+      "formula": "A[] ( Clutch.Closed imply ( GearControl.ReqTorqueC or GearControl.GearChanged or GearControl.Gear or GearControl.Initiate or GearControl.CheckTorque or GearControl.ReqNeuGear or GearControl.CheckGearNeu or GearControl.GNeuError or GearControl.ReqSyncSpeed or GearControl.CheckSyncSpeed or GearControl.ReqSetGear or GearControl.CheckGearSet1 or GearControl.GSetError ) )",
+      "status": "satisfied",
+      "duration_sec": 0.065,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 44,
+      "formula": "A[] ( GearBox.Idle imply ( GearControl.ClutchClose or GearControl.CheckClutchClosed or GearControl.CCloseError or GearControl.ReqTorqueC or GearControl.GearChanged or GearControl.Gear or GearControl.Initiate or GearControl.CheckTorque or GearControl.ReqNeuGear or GearControl.CheckClutch2 or GearControl.COpenError or GearControl.ClutchOpen2 ) )",
+      "status": "satisfied",
+      "duration_sec": 0.062,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 45,
+      "formula": "A[] ( GearBox.Neutral imply ( GearControl.ReqSetGear or GearControl.CheckClutchClosed2 or GearControl.CCloseError or GearControl.ReqTorqueC or GearControl.GearChanged or GearControl.Gear or GearControl.Initiate or GearControl.ReqSyncSpeed or GearControl.CheckSyncSpeed or GearControl.ReqSetGear or GearControl.CheckClutch or GearControl.COpenError or GearControl.ClutchOpen or GearControl.ReqSetGear2 ) )",
+      "status": "satisfied",
+      "duration_sec": 0.064,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 46,
+      "formula": "A[] ( Engine.Torque imply Clutch.Closed )",
+      "status": "satisfied",
+      "duration_sec": 0.058,
+      "source": "models\\model_with_ref\\engine\\engine.q"
+    },
+    {
+      "index": 47,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 0 or (SysTimer <= 1000)",
+      "status": "satisfied",
+      "duration_sec": 0.06,
+      "source": "models\\model_with_ref\\engine\\engine_ref.q"
+    },
+    {
+      "index": 48,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or (SysTimer <= 1500)",
+      "status": "satisfied",
+      "duration_sec": 0.061,
+      "source": "models\\model_with_ref\\engine\\engine_ref.q"
+    },
+    {
+      "index": 49,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 1 or (SysTimer <= 1055)",
+      "status": "satisfied",
+      "duration_sec": 0.061,
+      "source": "models\\model_with_ref\\engine\\engine_ref.q"
+    }
+  ]
+}

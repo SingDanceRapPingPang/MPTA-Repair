@@ -1,0 +1,32 @@
+{
+  "family": "lynch",
+  "model_id": "lynch_2_16",
+  "source_model": "models\\model_with_ref\\lynch\\lynch-2-16.xta",
+  "canonical_model": "models\\model_with_ref\\lynch\\versions\\lynch_2_16\\model.xml",
+  "query_sources": [
+    "models\\model_with_ref\\lynch\\lynch_ref.q"
+  ],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "A[] not P(1).L2 or (P(1).c <= T)",
+      "status": "satisfied",
+      "duration_sec": 0.055,
+      "source": "models\\model_with_ref\\lynch\\lynch_ref.q"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not P(1).L8 or (P(1).c <= T)",
+      "status": "satisfied",
+      "duration_sec": 0.051,
+      "source": "models\\model_with_ref\\lynch\\lynch_ref.q"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not P(1).L5 or (P(1).c <= T)",
+      "status": "satisfied",
+      "duration_sec": 0.053,
+      "source": "models\\model_with_ref\\lynch\\lynch_ref.q"
+    }
+  ]
+}

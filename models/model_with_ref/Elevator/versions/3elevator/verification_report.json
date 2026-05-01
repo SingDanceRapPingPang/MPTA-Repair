@@ -1,0 +1,23 @@
+{
+  "family": "Elevator",
+  "model_id": "3elevator",
+  "source_model": "models\\model_with_ref\\Elevator\\3elevator.xml",
+  "canonical_model": "models\\model_with_ref\\Elevator\\versions\\3elevator\\model.xml",
+  "query_sources": [],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "A[] not Door.idle or (x>=2 and x<=5)",
+      "status": "satisfied",
+      "duration_sec": 0.051,
+      "source": "models\\model_with_ref\\Elevator\\3elevator.xml"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not Elevator.First_Floor or (x>=2)",
+      "status": "satisfied",
+      "duration_sec": 0.053,
+      "source": "models\\model_with_ref\\Elevator\\3elevator.xml"
+    }
+  ]
+}

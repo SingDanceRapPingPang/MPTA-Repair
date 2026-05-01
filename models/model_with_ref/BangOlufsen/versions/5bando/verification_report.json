@@ -1,0 +1,47 @@
+{
+  "family": "BangOlufsen",
+  "model_id": "5bando",
+  "source_model": "models\\model_with_ref\\BangOlufsen\\5bando.xml",
+  "canonical_model": "models\\model_with_ref\\BangOlufsen\\versions\\5bando\\model.xml",
+  "query_sources": [
+    "models\\model_with_ref\\BangOlufsen\\bando_ref.q"
+  ],
+  "properties": [
+    {
+      "index": 1,
+      "formula": "A[] Sender_A.stop or Sender_A.end_jam or (A_c <= 28116)",
+      "status": "satisfied",
+      "duration_sec": 1.003,
+      "source": "models\\model_with_ref\\BangOlufsen\\5bando.xml"
+    },
+    {
+      "index": 2,
+      "formula": "A[] Sender_B.stop or Sender_B.end_jam or (B_c <= 28116)",
+      "status": "not_satisfied",
+      "duration_sec": 0.118,
+      "source": "models\\model_with_ref\\BangOlufsen\\bando_ref.q",
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_p7llyt7_\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not Sender_A.jam or (A_c <= 25000)",
+      "status": "satisfied",
+      "duration_sec": 0.925,
+      "source": "models\\model_with_ref\\BangOlufsen\\bando_ref.q"
+    },
+    {
+      "index": 4,
+      "formula": "A[] not Sender_B.newPn or (B_c <= 40)",
+      "status": "satisfied",
+      "duration_sec": 0.955,
+      "source": "models\\model_with_ref\\BangOlufsen\\bando_ref.q"
+    },
+    {
+      "index": 5,
+      "formula": "A[] not Sender_A.ex_silence1 or (A_c <= 2343)",
+      "status": "satisfied",
+      "duration_sec": 0.939,
+      "source": "models\\model_with_ref\\BangOlufsen\\bando_ref.q"
+    }
+  ]
+}
