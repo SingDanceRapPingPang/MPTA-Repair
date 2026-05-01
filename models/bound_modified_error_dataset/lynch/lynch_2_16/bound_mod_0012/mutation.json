@@ -1,0 +1,49 @@
+{
+  "id": "bound_mod_0012",
+  "mutation_type": "bound_mod",
+  "description": "P.L5 invariant: c <= T -> c <= 32 (delta=+16)",
+  "source_model": "models\\curated_model_with_properties\\lynch\\lynch_2_16\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\lynch\\lynch_2_16\\lynch_2_16_ref.q",
+  "template": "P",
+  "owner_kind": "location",
+  "owner": "L5",
+  "label_kind": "invariant",
+  "original": "c <= T",
+  "mutated": "c <= 32",
+  "old_bound_value": 16,
+  "old_bound_text": "T",
+  "new_bound": 32,
+  "delta": 16,
+  "violated_properties": [
+    {
+      "index": 3,
+      "formula": "A[] not P(1).L5 or (P(1).c <= T)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] not P(1).L2 or (P(1).c <= T)",
+      "status": "satisfied",
+      "duration_sec": 0.054,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query__cyclwnn\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not P(1).L8 or (P(1).c <= T)",
+      "status": "satisfied",
+      "duration_sec": 0.052,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_s7dl4t20\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not P(1).L5 or (P(1).c <= T)",
+      "status": "not_satisfied",
+      "duration_sec": 0.051,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_2_tul3pg\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

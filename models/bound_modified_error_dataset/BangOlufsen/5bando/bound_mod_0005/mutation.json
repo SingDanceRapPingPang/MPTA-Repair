@@ -1,0 +1,49 @@
+{
+  "id": "bound_mod_0005",
+  "mutation_type": "bound_mod",
+  "description": "Sender_A.ex_jam invariant: A_c <= 781 -> A_c <= 28897 (delta=+28116)",
+  "source_model": "models\\curated_model_with_properties\\BangOlufsen\\5bando\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\BangOlufsen\\5bando\\5bando_ref.q",
+  "template": "Sender_A",
+  "owner_kind": "location",
+  "owner": "ex_jam",
+  "label_kind": "invariant",
+  "original": "A_c <= 781",
+  "mutated": "A_c <= 28897",
+  "old_bound_value": 781,
+  "old_bound_text": "781",
+  "new_bound": 28897,
+  "delta": 28116,
+  "violated_properties": [
+    {
+      "index": 1,
+      "formula": "A[] Sender_A.stop or Sender_A.end_jam or (A_c <= 28116)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] Sender_A.stop or Sender_A.end_jam or (A_c <= 28116)",
+      "status": "not_satisfied",
+      "duration_sec": 0.065,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_v8ezm1es\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not Sender_A.jam or (A_c <= 25000)",
+      "status": "satisfied",
+      "duration_sec": 4.425,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_r23fsoto\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not Sender_B.newPn or (B_c <= 40)",
+      "status": "satisfied",
+      "duration_sec": 2.18,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_uaa936pc\\property.q:1\n -- Formula is satisfied.\n"
+    }
+  ]
+}

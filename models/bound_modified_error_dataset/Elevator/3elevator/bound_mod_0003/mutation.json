@@ -1,0 +1,41 @@
+{
+  "id": "bound_mod_0003",
+  "mutation_type": "bound_mod",
+  "description": "Door.idle invariant: x<=5 -> x <= 10 (delta=+5)",
+  "source_model": "models\\curated_model_with_properties\\Elevator\\3elevator\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\Elevator\\3elevator\\3elevator_ref.q",
+  "template": "Door",
+  "owner_kind": "location",
+  "owner": "idle",
+  "label_kind": "invariant",
+  "original": "x<=5",
+  "mutated": "x <= 10",
+  "old_bound_value": 5,
+  "old_bound_text": "5",
+  "new_bound": 10,
+  "delta": 5,
+  "violated_properties": [
+    {
+      "index": 1,
+      "formula": "A[] not Door.idle or (x>=2 and x<=5)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] not Door.idle or (x>=2 and x<=5)",
+      "status": "not_satisfied",
+      "duration_sec": 0.05,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_y34mavmx\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not Elevator.First_Floor or (x>=2)",
+      "status": "satisfied",
+      "duration_sec": 0.05,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_4efzwyxu\\property.q:1\n -- Formula is satisfied.\n"
+    }
+  ]
+}

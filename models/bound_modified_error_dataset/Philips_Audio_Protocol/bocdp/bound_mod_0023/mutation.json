@@ -1,0 +1,49 @@
+{
+  "id": "bound_mod_0023",
+  "mutation_type": "bound_mod",
+  "description": "Sender_A.hold invariant: A_c <= 28116 -> A_c <= 56232 (delta=+28116)",
+  "source_model": "models\\curated_model_with_properties\\Philips_Audio_Protocol\\bocdp\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\Philips_Audio_Protocol\\bocdp\\bocdp_ref.q",
+  "template": "Sender_A",
+  "owner_kind": "location",
+  "owner": "hold",
+  "label_kind": "invariant",
+  "original": "A_c <= 28116",
+  "mutated": "A_c <= 56232",
+  "old_bound_value": 28116,
+  "old_bound_text": "28116",
+  "new_bound": 56232,
+  "delta": 28116,
+  "violated_properties": [
+    {
+      "index": 2,
+      "formula": "A[] not Sender_A.hold or (A_c <= 28116)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] not Sender_A.transmit or not Sender_B.transmit or (A_c <= 781)",
+      "status": "satisfied",
+      "duration_sec": 0.177,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_yooocp7h\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not Sender_A.hold or (A_c <= 28116)",
+      "status": "not_satisfied",
+      "duration_sec": 0.093,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_758k7cl4\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not Sender_A.jam or not Sender_B.jam or (A_c <= 25000)",
+      "status": "satisfied",
+      "duration_sec": 0.187,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_u7b59_76\\property.q:1\n -- Formula is satisfied.\n"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "bound_mod_0092",
+  "mutation_type": "bound_mod",
+  "description": "ST2.station_y_async invariant: y<=TRTT -> y <= 240 (delta=+120)",
+  "source_model": "models\\curated_model_with_properties\\FDDI\\8fddi\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\FDDI\\8fddi\\8fddi_ref.q",
+  "template": "ST2",
+  "owner_kind": "location",
+  "owner": "station_y_async",
+  "label_kind": "invariant",
+  "original": "y<=TRTT",
+  "mutated": "y <= 240",
+  "old_bound_value": 120,
+  "old_bound_text": "TRTT",
+  "new_bound": 240,
+  "delta": 120,
+  "violated_properties": [
+    {
+      "index": 1,
+      "formula": "A[] (ST1.x <= 140)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] (ST1.x <= 140)",
+      "status": "not_satisfied",
+      "duration_sec": 0.052,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_uqlisaqh\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] (ST1.station_z_idle or ST1.station_y_idle) or (ST2.station_z_idle or ST2.station_y_idle)",
+      "status": "satisfied",
+      "duration_sec": 0.051,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_dxey54ef\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not (ST1.station_z_idle or ST1.station_y_idle) imply (ST1.x <= 120)",
+      "status": "satisfied",
+      "duration_sec": 0.05,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query__pv8d3n0\\property.q:1\n -- Formula is satisfied.\n"
+    }
+  ]
+}

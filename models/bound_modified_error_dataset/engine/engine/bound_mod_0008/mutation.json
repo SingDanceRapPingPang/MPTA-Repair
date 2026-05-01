@@ -1,0 +1,49 @@
+{
+  "id": "bound_mod_0008",
+  "mutation_type": "bound_mod",
+  "description": "Clutch.Opening invariant: CTimer<=150 -> CTimer <= 151 (delta=+1)",
+  "source_model": "models\\curated_model_with_properties\\engine\\engine\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\engine\\engine\\engine_ref.q",
+  "template": "Clutch",
+  "owner_kind": "location",
+  "owner": "Opening",
+  "label_kind": "invariant",
+  "original": "CTimer<=150",
+  "mutated": "CTimer <= 151",
+  "old_bound_value": 150,
+  "old_bound_text": "150",
+  "new_bound": 151,
+  "delta": 1,
+  "violated_properties": [
+    {
+      "index": 3,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 1 or (SysTimer <= 1055)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 0 or (SysTimer <= 1000)",
+      "status": "satisfied",
+      "duration_sec": 0.056,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_eopwcnhj\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or (SysTimer <= 1500)",
+      "status": "satisfied",
+      "duration_sec": 0.053,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_tonlltk_\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 1 or (SysTimer <= 1055)",
+      "status": "not_satisfied",
+      "duration_sec": 0.053,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_gmb_lmar\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

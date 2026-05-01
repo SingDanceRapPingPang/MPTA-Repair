@@ -1,0 +1,49 @@
+{
+  "id": "bound_mod_0001",
+  "mutation_type": "bound_mod",
+  "description": "RING.ring_to_1 invariant: x <= td -> x <= 1 (delta=+1)",
+  "source_model": "models\\curated_model_with_properties\\FDDI\\8fddi\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\FDDI\\8fddi\\8fddi_ref.q",
+  "template": "RING",
+  "owner_kind": "location",
+  "owner": "ring_to_1",
+  "label_kind": "invariant",
+  "original": "x <= td",
+  "mutated": "x <= 1",
+  "old_bound_value": 0,
+  "old_bound_text": "td",
+  "new_bound": 1,
+  "delta": 1,
+  "violated_properties": [
+    {
+      "index": 1,
+      "formula": "A[] (ST1.x <= 140)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] (ST1.x <= 140)",
+      "status": "not_satisfied",
+      "duration_sec": 0.056,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_bbj1kye6\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] (ST1.station_z_idle or ST1.station_y_idle) or (ST2.station_z_idle or ST2.station_y_idle)",
+      "status": "satisfied",
+      "duration_sec": 0.051,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_3d8901wi\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not (ST1.station_z_idle or ST1.station_y_idle) imply (ST1.x <= 120)",
+      "status": "satisfied",
+      "duration_sec": 0.051,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_w4_ny654\\property.q:1\n -- Formula is satisfied.\n"
+    }
+  ]
+}

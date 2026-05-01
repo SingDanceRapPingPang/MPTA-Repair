@@ -1,0 +1,49 @@
+{
+  "id": "bound_mod_0033",
+  "mutation_type": "bound_mod",
+  "description": "GearBox.Closing invariant: GBTimer<=300 -> GBTimer <= 301 (delta=+1)",
+  "source_model": "models\\curated_model_with_properties\\engine\\engine\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\engine\\engine\\engine_ref.q",
+  "template": "GearBox",
+  "owner_kind": "location",
+  "owner": "Closing",
+  "label_kind": "invariant",
+  "original": "GBTimer<=300",
+  "mutated": "GBTimer <= 301",
+  "old_bound_value": 300,
+  "old_bound_text": "300",
+  "new_bound": 301,
+  "delta": 1,
+  "violated_properties": [
+    {
+      "index": 3,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 1 or (SysTimer <= 1055)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 0 or (SysTimer <= 1000)",
+      "status": "satisfied",
+      "duration_sec": 0.052,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_6yvqtxdz\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or (SysTimer <= 1500)",
+      "status": "satisfied",
+      "duration_sec": 0.054,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_os1v78_q\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 1 or (SysTimer <= 1055)",
+      "status": "not_satisfied",
+      "duration_sec": 0.054,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_d5x4zotx\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

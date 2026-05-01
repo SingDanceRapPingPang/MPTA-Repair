@@ -1,0 +1,53 @@
+{
+  "id": "bound_mod_0110",
+  "mutation_type": "bound_mod",
+  "description": "GearControl.CheckTorque invariant: GCTimer<=255 -> GCTimer <= 1155 (delta=+900)",
+  "source_model": "models\\curated_model_with_properties\\engine\\engine\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\engine\\engine\\engine_ref.q",
+  "template": "GearControl",
+  "owner_kind": "location",
+  "owner": "CheckTorque",
+  "label_kind": "invariant",
+  "original": "GCTimer<=255",
+  "mutated": "GCTimer <= 1155",
+  "old_bound_value": 255,
+  "old_bound_text": "255",
+  "new_bound": 1155,
+  "delta": 900,
+  "violated_properties": [
+    {
+      "index": 2,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or (SysTimer <= 1500)"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 1 or (SysTimer <= 1055)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 0 or (SysTimer <= 1000)",
+      "status": "satisfied",
+      "duration_sec": 0.056,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query__8sl3nj0\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or (SysTimer <= 1500)",
+      "status": "not_satisfied",
+      "duration_sec": 0.055,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_rs5cwx9v\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 1 or (SysTimer <= 1055)",
+      "status": "not_satisfied",
+      "duration_sec": 0.053,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_ok5_ke2e\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

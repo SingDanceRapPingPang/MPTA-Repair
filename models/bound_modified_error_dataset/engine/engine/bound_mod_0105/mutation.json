@@ -1,0 +1,49 @@
+{
+  "id": "bound_mod_0105",
+  "mutation_type": "bound_mod",
+  "description": "GearControl.CheckSyncSpeed invariant: GCTimer<=155 -> GCTimer <= 1055 (delta=+900)",
+  "source_model": "models\\curated_model_with_properties\\engine\\engine\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\engine\\engine\\engine_ref.q",
+  "template": "GearControl",
+  "owner_kind": "location",
+  "owner": "CheckSyncSpeed",
+  "label_kind": "invariant",
+  "original": "GCTimer<=155",
+  "mutated": "GCTimer <= 1055",
+  "old_bound_value": 155,
+  "old_bound_text": "155",
+  "new_bound": 1055,
+  "delta": 900,
+  "violated_properties": [
+    {
+      "index": 2,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or (SysTimer <= 1500)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 0 or (SysTimer <= 1000)",
+      "status": "satisfied",
+      "duration_sec": 0.057,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_8c3socmg\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or (SysTimer <= 1500)",
+      "status": "not_satisfied",
+      "duration_sec": 0.056,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_wb91dt3s\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not GearControl.GearChanged or ErrStat != 0 or UseCase != 1 or (SysTimer <= 1055)",
+      "status": "satisfied",
+      "duration_sec": 0.055,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_bjgu2_7v\\property.q:1\n -- Formula is satisfied.\n"
+    }
+  ]
+}

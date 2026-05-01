@@ -1,0 +1,49 @@
+{
+  "id": "bound_mod_0045",
+  "mutation_type": "bound_mod",
+  "description": "Ctrl.wait_for_s2 invariant: Ctrl_z <= 1000 -> Ctrl_z <= 1200 (delta=+200)",
+  "source_model": "models\\curated_model_with_properties\\mutex\\mutex\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\mutex\\mutex\\mutex_ref.q",
+  "template": "Ctrl",
+  "owner_kind": "location",
+  "owner": "wait_for_s2",
+  "label_kind": "invariant",
+  "original": "Ctrl_z <= 1000",
+  "mutated": "Ctrl_z <= 1200",
+  "old_bound_value": 1000,
+  "old_bound_text": "1000",
+  "new_bound": 1200,
+  "delta": 200,
+  "violated_properties": [
+    {
+      "index": 1,
+      "formula": "A[] not Ctrl.wait_for_s2 or (Ctrl_z <= 1000)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] not Ctrl.wait_for_s2 or (Ctrl_z <= 1000)",
+      "status": "not_satisfied",
+      "duration_sec": 0.055,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_w0baa_2m\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not Ctrl.g1 or (Ctrl_z <= 1000)",
+      "status": "satisfied",
+      "duration_sec": 0.233,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_jnos5rey\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not S1.I_am_safe or (S1_z <= 1000)",
+      "status": "satisfied",
+      "duration_sec": 0.235,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_o2l0xyb_\\property.q:1\n -- Formula is satisfied.\n"
+    }
+  ]
+}

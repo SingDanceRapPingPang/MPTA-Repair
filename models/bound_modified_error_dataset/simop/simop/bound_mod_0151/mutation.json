@@ -1,0 +1,41 @@
+{
+  "id": "bound_mod_0151",
+  "mutation_type": "bound_mod",
+  "description": "RIO.rio_3->rio_4 guard: RIOclk == RIOd -> RIOclk == 2 (delta=+1)",
+  "source_model": "models\\curated_model_with_properties\\simop\\simop\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\simop\\simop\\simop_ref.q",
+  "template": "RIO",
+  "owner_kind": "transition",
+  "owner": "rio_3->rio_4",
+  "label_kind": "guard",
+  "original": "RIOclk == RIOd",
+  "mutated": "RIOclk == 2",
+  "old_bound_value": 1,
+  "old_bound_text": "RIOd",
+  "new_bound": 2,
+  "delta": 1,
+  "violated_properties": [
+    {
+      "index": 2,
+      "formula": "E<> RIO.RIO5"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "E<> COM.COM4",
+      "status": "satisfied",
+      "duration_sec": 0.083,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_n81qu1h7\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "E<> RIO.RIO5",
+      "status": "not_satisfied",
+      "duration_sec": 0.079,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_mpcxoj74\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

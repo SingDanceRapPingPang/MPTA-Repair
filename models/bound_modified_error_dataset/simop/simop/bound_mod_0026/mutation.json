@@ -1,0 +1,41 @@
+{
+  "id": "bound_mod_0026",
+  "mutation_type": "bound_mod",
+  "description": "PLC.plc_1->plc_2 guard: PLCclk >= PLCmtt -> PLCclk >= 7 (delta=+5)",
+  "source_model": "models\\curated_model_with_properties\\simop\\simop\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\simop\\simop\\simop_ref.q",
+  "template": "PLC",
+  "owner_kind": "transition",
+  "owner": "plc_1->plc_2",
+  "label_kind": "guard",
+  "original": "PLCclk >= PLCmtt",
+  "mutated": "PLCclk >= 7",
+  "old_bound_value": 2,
+  "old_bound_text": "PLCmtt",
+  "new_bound": 7,
+  "delta": 5,
+  "violated_properties": [
+    {
+      "index": 2,
+      "formula": "E<> RIO.RIO5"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "E<> COM.COM4",
+      "status": "satisfied",
+      "duration_sec": 0.079,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_igu792hc\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "E<> RIO.RIO5",
+      "status": "not_satisfied",
+      "duration_sec": 0.08,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_7f4x53lk\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

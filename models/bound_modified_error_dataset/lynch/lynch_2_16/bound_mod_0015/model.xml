@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<nta>
+    <declaration>const int N = 2;
+
+typedef int[1, N] Pid;
+int v1;
+bool v2;
+const int T = 16;</declaration>
+    <template>
+        <name>P</name>
+        <parameter>const Pid i</parameter>
+        <declaration>clock c;</declaration>
+        <location id="p_0">
+            <name>L9</name>
+            <label kind="invariant">c &lt;= T</label>
+        </location>
+        <location id="p_1">
+            <name>L8</name>
+            <label kind="invariant">c &lt;= T</label>
+        </location>
+        <location id="p_2">
+            <name>CS7</name>
+        </location>
+        <location id="p_3">
+            <name>L6</name>
+        </location>
+        <location id="p_4">
+            <name>L5</name>
+            <label kind="invariant">c &lt;= T</label>
+        </location>
+        <location id="p_5">
+            <name>L4</name>
+        </location>
+        <location id="p_6">
+            <name>L3</name>
+        </location>
+        <location id="p_7">
+            <name>L2</name>
+            <label kind="invariant">c &lt;= 17</label>
+        </location>
+        <location id="p_8">
+            <name>L1</name>
+        </location>
+        <init ref="p_8" />
+        <transition>
+            <source ref="p_0" />
+            <target ref="p_8" />
+            <label kind="assignment">v1 = 0</label>
+        </transition>
+        <transition>
+            <source ref="p_1" />
+            <target ref="p_0" />
+            <label kind="assignment">v2 = false, c = 0</label>
+        </transition>
+        <transition>
+            <source ref="p_2" />
+            <target ref="p_1" />
+            <label kind="assignment">c = 0</label>
+        </transition>
+        <transition>
+            <source ref="p_5" />
+            <target ref="p_8" />
+            <label kind="guard">v2</label>
+        </transition>
+        <transition>
+            <source ref="p_3" />
+            <target ref="p_8" />
+            <label kind="guard">v1 != i</label>
+        </transition>
+        <transition>
+            <source ref="p_6" />
+            <target ref="p_8" />
+            <label kind="guard">v1 != i</label>
+        </transition>
+        <transition>
+            <source ref="p_3" />
+            <target ref="p_2" />
+            <label kind="guard">v1 == i</label>
+        </transition>
+        <transition>
+            <source ref="p_4" />
+            <target ref="p_3" />
+            <label kind="assignment">v2 = true, c = 0</label>
+        </transition>
+        <transition>
+            <source ref="p_5" />
+            <target ref="p_4" />
+            <label kind="guard">!v2</label>
+            <label kind="assignment">c = 0</label>
+        </transition>
+        <transition>
+            <source ref="p_6" />
+            <target ref="p_5" />
+            <label kind="guard">v1 == i &amp;&amp; c &gt; T</label>
+        </transition>
+        <transition>
+            <source ref="p_7" />
+            <target ref="p_6" />
+            <label kind="assignment">v1 = i, c = 0</label>
+        </transition>
+        <transition>
+            <source ref="p_8" />
+            <target ref="p_7" />
+            <label kind="guard">v1 == 0</label>
+            <label kind="assignment">c = 0</label>
+        </transition>
+    </template>
+    <system>system P;</system>
+</nta>

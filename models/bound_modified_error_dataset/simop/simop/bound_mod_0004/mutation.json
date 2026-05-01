@@ -1,0 +1,41 @@
+{
+  "id": "bound_mod_0004",
+  "mutation_type": "bound_mod",
+  "description": "PLC.PLC3 invariant: PLCclk <= PLCct -> PLCclk <= 4 (delta=-1)",
+  "source_model": "models\\curated_model_with_properties\\simop\\simop\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\simop\\simop\\simop_ref.q",
+  "template": "PLC",
+  "owner_kind": "location",
+  "owner": "PLC3",
+  "label_kind": "invariant",
+  "original": "PLCclk <= PLCct",
+  "mutated": "PLCclk <= 4",
+  "old_bound_value": 5,
+  "old_bound_text": "PLCct",
+  "new_bound": 4,
+  "delta": -1,
+  "violated_properties": [
+    {
+      "index": 2,
+      "formula": "E<> RIO.RIO5"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "E<> COM.COM4",
+      "status": "satisfied",
+      "duration_sec": 0.071,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_3zwqvope\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "E<> RIO.RIO5",
+      "status": "not_satisfied",
+      "duration_sec": 0.078,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_pfg3adye\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

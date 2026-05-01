@@ -29,3 +29,13 @@ Regenerate the curated dataset:
 ```powershell
 python scripts\build_curated_dataset.py
 ```
+
+Generate the Bound Modification faulty dataset:
+
+```powershell
+python scripts\build_bound_modified_error_dataset.py
+```
+
+The generated mutants are stored in `models/bound_modified_error_dataset`.
+Each mutant applies one clock-bound change and is kept only when `verifyta`
+finds at least one violated property from the original property set.

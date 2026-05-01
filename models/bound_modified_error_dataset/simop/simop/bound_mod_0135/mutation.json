@@ -1,0 +1,41 @@
+{
+  "id": "bound_mod_0135",
+  "mutation_type": "bound_mod",
+  "description": "RIO.RIO4 invariant: RIOclk <= RIOd -> RIOclk <= 0 (delta=-1)",
+  "source_model": "models\\curated_model_with_properties\\simop\\simop\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\simop\\simop\\simop_ref.q",
+  "template": "RIO",
+  "owner_kind": "location",
+  "owner": "RIO4",
+  "label_kind": "invariant",
+  "original": "RIOclk <= RIOd",
+  "mutated": "RIOclk <= 0",
+  "old_bound_value": 1,
+  "old_bound_text": "RIOd",
+  "new_bound": 0,
+  "delta": -1,
+  "violated_properties": [
+    {
+      "index": 2,
+      "formula": "E<> RIO.RIO5"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "E<> COM.COM4",
+      "status": "satisfied",
+      "duration_sec": 0.1,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_jzz3r210\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "E<> RIO.RIO5",
+      "status": "not_satisfied",
+      "duration_sec": 0.093,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_2nt60ftb\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

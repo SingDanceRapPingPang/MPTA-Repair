@@ -1,0 +1,49 @@
+{
+  "id": "bound_mod_0033",
+  "mutation_type": "bound_mod",
+  "description": "controller.controller1 invariant: z <= e -> z <= 6 (delta=+5)",
+  "source_model": "models\\curated_model_with_properties\\train\\trainahv93_2\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\train\\trainahv93_2\\trainahv93_2_ref.q",
+  "template": "controller",
+  "owner_kind": "location",
+  "owner": "controller1",
+  "label_kind": "invariant",
+  "original": "z <= e",
+  "mutated": "z <= 6",
+  "old_bound_value": 1,
+  "old_bound_text": "e",
+  "new_bound": 6,
+  "delta": 5,
+  "violated_properties": [
+    {
+      "index": 3,
+      "formula": "A[] not (train(1).train1 && gate.gate0) or (train(1).x <= 2)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] not (controller.controller3 && cnt>0)",
+      "status": "satisfied",
+      "duration_sec": 0.066,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_fbg4k4wf\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not (gate.gate1 && (train(1).train2 or train(1).train3))",
+      "status": "satisfied",
+      "duration_sec": 0.065,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_blq3pj7s\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not (train(1).train1 && gate.gate0) or (train(1).x <= 2)",
+      "status": "not_satisfied",
+      "duration_sec": 0.063,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_r1ehjfk9\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

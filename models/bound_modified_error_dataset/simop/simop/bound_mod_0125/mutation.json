@@ -1,0 +1,45 @@
+{
+  "id": "bound_mod_0125",
+  "mutation_type": "bound_mod",
+  "description": "NET.net_3->net_0 guard: NETclk == NETd -> NETclk == 2 (delta=+1)",
+  "source_model": "models\\curated_model_with_properties\\simop\\simop\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\simop\\simop\\simop_ref.q",
+  "template": "NET",
+  "owner_kind": "transition",
+  "owner": "net_3->net_0",
+  "label_kind": "guard",
+  "original": "NETclk == NETd",
+  "mutated": "NETclk == 2",
+  "old_bound_value": 1,
+  "old_bound_text": "NETd",
+  "new_bound": 2,
+  "delta": 1,
+  "violated_properties": [
+    {
+      "index": 1,
+      "formula": "E<> COM.COM4"
+    },
+    {
+      "index": 2,
+      "formula": "E<> RIO.RIO5"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "E<> COM.COM4",
+      "status": "not_satisfied",
+      "duration_sec": 0.086,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_lldc10iu\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "E<> RIO.RIO5",
+      "status": "not_satisfied",
+      "duration_sec": 0.082,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_uz4673i8\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

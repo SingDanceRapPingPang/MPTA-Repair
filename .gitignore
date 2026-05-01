@@ -28,3 +28,6 @@ dist/
 *.egg-info/
 logs/
 *.log
+
+# External reference code
+TA-Error-Injection-main/

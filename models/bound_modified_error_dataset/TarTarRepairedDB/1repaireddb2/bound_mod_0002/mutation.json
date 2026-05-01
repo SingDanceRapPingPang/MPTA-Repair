@@ -1,0 +1,33 @@
+{
+  "id": "bound_mod_0002",
+  "mutation_type": "bound_mod",
+  "description": "client.serReceiving invariant: y <= 2 -> y <= 3 (delta=+1)",
+  "source_model": "models\\curated_model_with_properties\\TarTarRepairedDB\\1repaireddb2\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\TarTarRepairedDB\\1repaireddb2\\1repaireddb2_ref.q",
+  "template": "client",
+  "owner_kind": "location",
+  "owner": "serReceiving",
+  "label_kind": "invariant",
+  "original": "y <= 2",
+  "mutated": "y <= 3",
+  "old_bound_value": 2,
+  "old_bound_text": "2",
+  "new_bound": 3,
+  "delta": 1,
+  "violated_properties": [
+    {
+      "index": 1,
+      "formula": "A[] not client.serReceiving or (x <= 4)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] not client.serReceiving or (x <= 4)",
+      "status": "not_satisfied",
+      "duration_sec": 0.07,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_k1k2cu90\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

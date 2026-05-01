@@ -1,0 +1,643 @@
+<?xml version='1.0' encoding='utf-8'?>
+<nta>
+    <declaration>const int PLCct = 5;
+const int NETd = 1;
+const int PLCmtt = 2;
+const int SIGmrt = 3;
+const int COMct = 5;
+const int RIOd = 1;
+const int COMd = 1;
+
+
+chan SIGout0;
+chan RNrep0;
+chan NRreq0;
+chan NRreq1;
+chan SIGout1;
+chan CNreq0;
+chan CNreq1;
+chan PLCout1;
+chan PLCout0;
+chan PLCbeg;
+chan SIGin1;
+chan NCrep1;
+chan NCrep0;
+chan COMin0;
+chan COMin1;
+chan RNrep1;
+
+clock yy;</declaration>
+    <template>
+        <name>PLC</name>
+        <declaration>clock PLCclk;</declaration>
+        <location id="plc_0">
+            <name>PLCinit</name>
+        </location>
+        <location id="plc_1">
+            <name>PLC1</name>
+            <label kind="invariant">PLCclk &lt;= PLCct</label>
+        </location>
+        <location id="plc_2">
+            <name>PLC3</name>
+            <label kind="invariant">PLCclk &lt;= PLCct</label>
+        </location>
+        <location id="plc_3">
+            <name>PLC4</name>
+            <label kind="invariant">PLCclk &lt;= PLCct</label>
+        </location>
+        <location id="plc_4">
+            <name>PLC5</name>
+            <label kind="invariant">yy &lt;= 0</label>
+        </location>
+        <location id="plc_5">
+            <name>PLC6</name>
+            <label kind="invariant">PLCclk &lt;= PLCct</label>
+        </location>
+        <location id="plc_6">
+            <name>PLC7</name>
+            <label kind="invariant">PLCclk &lt;= PLCct</label>
+        </location>
+        <location id="plc_7">
+            <name>PLC9</name>
+            <label kind="invariant">PLCclk &lt;= PLCct</label>
+        </location>
+        <init ref="plc_0" />
+        <transition>
+            <source ref="plc_2" />
+            <target ref="plc_1" />
+            <label kind="guard">PLCclk == PLCct</label>
+            <label kind="assignment">PLCclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="plc_1" />
+            <target ref="plc_2" />
+            <label kind="guard">PLCclk &gt;= PLCmtt</label>
+            <label kind="synchronisation">PLCout0!</label>
+        </transition>
+        <transition>
+            <source ref="plc_6" />
+            <target ref="plc_6" />
+            <label kind="synchronisation">COMin1?</label>
+        </transition>
+        <transition>
+            <source ref="plc_2" />
+            <target ref="plc_2" />
+            <label kind="synchronisation">COMin0?</label>
+        </transition>
+        <transition>
+            <source ref="plc_0" />
+            <target ref="plc_1" />
+            <label kind="synchronisation">PLCbeg!</label>
+            <label kind="assignment">PLCclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="plc_4" />
+            <target ref="plc_4" />
+            <label kind="synchronisation">COMin1?</label>
+        </transition>
+        <transition>
+            <source ref="plc_2" />
+            <target ref="plc_5" />
+            <label kind="synchronisation">COMin1?</label>
+        </transition>
+        <transition>
+            <source ref="plc_6" />
+            <target ref="plc_7" />
+            <label kind="guard">PLCclk &gt;= PLCmtt</label>
+            <label kind="synchronisation">PLCout1!</label>
+        </transition>
+        <transition>
+            <source ref="plc_7" />
+            <target ref="plc_6" />
+            <label kind="guard">PLCclk == PLCct</label>
+            <label kind="assignment">PLCclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="plc_7" />
+            <target ref="plc_7" />
+            <label kind="synchronisation">COMin1?</label>
+        </transition>
+        <transition>
+            <source ref="plc_3" />
+            <target ref="plc_4" />
+            <label kind="guard">PLCclk &gt;= PLCmtt</label>
+            <label kind="assignment">yy = 0</label>
+        </transition>
+        <transition>
+            <source ref="plc_3" />
+            <target ref="plc_3" />
+            <label kind="synchronisation">COMin1?</label>
+        </transition>
+        <transition>
+            <source ref="plc_4" />
+            <target ref="plc_5" />
+            <label kind="guard">yy &lt;= 0</label>
+            <label kind="synchronisation">PLCout0!</label>
+        </transition>
+        <transition>
+            <source ref="plc_5" />
+            <target ref="plc_6" />
+            <label kind="guard">PLCclk == PLCct</label>
+            <label kind="assignment">PLCclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="plc_5" />
+            <target ref="plc_5" />
+            <label kind="synchronisation">COMin1?</label>
+        </transition>
+        <transition>
+            <source ref="plc_1" />
+            <target ref="plc_1" />
+            <label kind="synchronisation">COMin0?</label>
+        </transition>
+    </template>
+    <template>
+        <name>COM</name>
+        <declaration>clock tt;
+	clock COMclk;</declaration>
+        <location id="com_0">
+            <name>COM11</name>
+            <label kind="invariant">COMclk &lt;= COMct</label>
+        </location>
+        <location id="com_1">
+            <name>COM12</name>
+            <label kind="invariant">COMclk &lt;= COMd</label>
+        </location>
+        <location id="com_2">
+            <name>COM13</name>
+            <label kind="invariant">COMclk &lt;= COMct</label>
+        </location>
+        <location id="com_3">
+            <name>COM14</name>
+            <label kind="invariant">tt &lt;= 0</label>
+        </location>
+        <location id="com_4">
+            <name>COM15</name>
+            <label kind="invariant">COMclk &lt;= COMct</label>
+        </location>
+        <location id="com_5">
+            <name>COMinit</name>
+        </location>
+        <location id="com_6">
+            <name>COM1</name>
+        </location>
+        <location id="com_7">
+            <name>COM2</name>
+            <label kind="invariant">COMclk &lt;= COMd</label>
+        </location>
+        <location id="com_8">
+            <name>COM3</name>
+            <label kind="invariant">COMclk &lt;= COMct</label>
+        </location>
+        <location id="com_9">
+            <name>COM4</name>
+            <label kind="invariant">tt &lt;= 0</label>
+        </location>
+        <location id="com_10">
+            <name>COM5</name>
+            <label kind="invariant">tt &lt;= 0</label>
+        </location>
+        <location id="com_11">
+            <name>COM6</name>
+            <label kind="invariant">COMclk &lt;= COMct</label>
+        </location>
+        <location id="com_12">
+            <name>COM7</name>
+            <label kind="invariant">COMclk &lt;= COMd</label>
+        </location>
+        <location id="com_13">
+            <name>COM8</name>
+            <label kind="invariant">COMclk &lt;= COMct</label>
+        </location>
+        <location id="com_14">
+            <name>COM9</name>
+            <label kind="invariant">tt &lt;= 0</label>
+        </location>
+        <location id="com_15">
+            <name>COM10</name>
+            <label kind="invariant">tt &lt;= 0</label>
+        </location>
+        <init ref="com_5" />
+        <transition>
+            <source ref="com_7" />
+            <target ref="com_8" />
+            <label kind="guard">COMclk == COMd</label>
+            <label kind="synchronisation">CNreq0!</label>
+        </transition>
+        <transition>
+            <source ref="com_12" />
+            <target ref="com_12" />
+            <label kind="synchronisation">PLCout1?</label>
+        </transition>
+        <transition>
+            <source ref="com_0" />
+            <target ref="com_1" />
+            <label kind="guard">COMclk == COMct</label>
+            <label kind="assignment">COMclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="com_2" />
+            <target ref="com_3" />
+            <label kind="synchronisation">NCrep1?</label>
+            <label kind="assignment">tt = 0</label>
+        </transition>
+        <transition>
+            <source ref="com_5" />
+            <target ref="com_6" />
+            <label kind="synchronisation">PLCbeg?</label>
+        </transition>
+        <transition>
+            <source ref="com_13" />
+            <target ref="com_14" />
+            <label kind="synchronisation">NCrep0?</label>
+            <label kind="assignment">tt = 0</label>
+        </transition>
+        <transition>
+            <source ref="com_8" />
+            <target ref="com_8" />
+            <label kind="synchronisation">PLCout0?</label>
+        </transition>
+        <transition>
+            <source ref="com_1" />
+            <target ref="com_1" />
+            <label kind="synchronisation">PLCout1?</label>
+        </transition>
+        <transition>
+            <source ref="com_13" />
+            <target ref="com_15" />
+            <label kind="synchronisation">NCrep1?</label>
+            <label kind="assignment">tt = 0</label>
+        </transition>
+        <transition>
+            <source ref="com_11" />
+            <target ref="com_7" />
+            <label kind="guard">COMclk == COMct</label>
+            <label kind="assignment">COMclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="com_11" />
+            <target ref="com_11" />
+            <label kind="synchronisation">PLCout0?</label>
+        </transition>
+        <transition>
+            <source ref="com_1" />
+            <target ref="com_2" />
+            <label kind="guard">COMclk == COMd</label>
+            <label kind="synchronisation">CNreq1!</label>
+        </transition>
+        <transition>
+            <source ref="com_4" />
+            <target ref="com_4" />
+            <label kind="synchronisation">PLCout1?</label>
+        </transition>
+        <transition>
+            <source ref="com_0" />
+            <target ref="com_0" />
+            <label kind="synchronisation">PLCout1?</label>
+        </transition>
+        <transition>
+            <source ref="com_7" />
+            <target ref="com_7" />
+            <label kind="synchronisation">PLCout0?</label>
+        </transition>
+        <transition>
+            <source ref="com_12" />
+            <target ref="com_13" />
+            <label kind="guard">COMclk == COMd</label>
+            <label kind="synchronisation">CNreq0!</label>
+        </transition>
+        <transition>
+            <source ref="com_8" />
+            <target ref="com_10" />
+            <label kind="synchronisation">NCrep1?</label>
+            <label kind="assignment">tt = 0</label>
+        </transition>
+        <transition>
+            <source ref="com_11" />
+            <target ref="com_0" />
+            <label kind="synchronisation">PLCout1?</label>
+        </transition>
+        <transition>
+            <source ref="com_10" />
+            <target ref="com_11" />
+            <label kind="guard">tt &lt;= 0</label>
+            <label kind="synchronisation">COMin1!</label>
+        </transition>
+        <transition>
+            <source ref="com_6" />
+            <target ref="com_6" />
+            <label kind="synchronisation">PLCout0?</label>
+        </transition>
+        <transition>
+            <source ref="com_3" />
+            <target ref="com_4" />
+            <label kind="guard">tt &lt;= 0</label>
+            <label kind="synchronisation">COMin1!</label>
+        </transition>
+        <transition>
+            <source ref="com_15" />
+            <target ref="com_0" />
+            <label kind="guard">tt &lt;= 0</label>
+            <label kind="synchronisation">COMin1!</label>
+        </transition>
+        <transition>
+            <source ref="com_6" />
+            <target ref="com_7" />
+            <label kind="assignment">COMclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="com_8" />
+            <target ref="com_9" />
+            <label kind="synchronisation">NCrep0?</label>
+            <label kind="assignment">tt = 0</label>
+        </transition>
+        <transition>
+            <source ref="com_13" />
+            <target ref="com_13" />
+            <label kind="synchronisation">PLCout1?</label>
+        </transition>
+        <transition>
+            <source ref="com_14" />
+            <target ref="com_0" />
+            <label kind="guard">tt &lt;= 0</label>
+            <label kind="synchronisation">COMin0!</label>
+        </transition>
+        <transition>
+            <source ref="com_4" />
+            <target ref="com_1" />
+            <label kind="guard">COMclk == COMct</label>
+            <label kind="assignment">COMclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="com_9" />
+            <target ref="com_11" />
+            <label kind="guard">tt &lt;= 0</label>
+            <label kind="synchronisation">COMin0!</label>
+        </transition>
+        <transition>
+            <source ref="com_2" />
+            <target ref="com_2" />
+            <label kind="synchronisation">PLCout1?</label>
+        </transition>
+    </template>
+    <template>
+        <name>NET</name>
+        <declaration>clock NETclk;</declaration>
+        <location id="net_0">
+            <name>NET1</name>
+        </location>
+        <location id="net_1">
+            <name>NET2</name>
+            <label kind="invariant">NETclk &lt;= NETd</label>
+        </location>
+        <location id="net_2">
+            <name>NET3</name>
+        </location>
+        <location id="net_3">
+            <name>NET4</name>
+            <label kind="invariant">NETclk &lt;= NETd</label>
+        </location>
+        <location id="net_4">
+            <name>NET5</name>
+            <label kind="invariant">NETclk &lt;= NETd</label>
+        </location>
+        <location id="net_5">
+            <name>NET6</name>
+        </location>
+        <location id="net_6">
+            <name>NET7</name>
+            <label kind="invariant">NETclk &lt;= NETd</label>
+        </location>
+        <init ref="net_0" />
+        <transition>
+            <source ref="net_2" />
+            <target ref="net_3" />
+            <label kind="synchronisation">RNrep0?</label>
+            <label kind="assignment">NETclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="net_1" />
+            <target ref="net_2" />
+            <label kind="guard">NETclk == NETd</label>
+            <label kind="synchronisation">NRreq0!</label>
+        </transition>
+        <transition>
+            <source ref="net_6" />
+            <target ref="net_0" />
+            <label kind="guard">NETclk == NETd</label>
+            <label kind="synchronisation">NCrep1!</label>
+        </transition>
+        <transition>
+            <source ref="net_3" />
+            <target ref="net_0" />
+            <label kind="guard">NETclk == 2</label>
+            <label kind="synchronisation">NCrep0!</label>
+        </transition>
+        <transition>
+            <source ref="net_0" />
+            <target ref="net_4" />
+            <label kind="synchronisation">CNreq1?</label>
+            <label kind="assignment">NETclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="net_5" />
+            <target ref="net_6" />
+            <label kind="synchronisation">RNrep1?</label>
+            <label kind="assignment">NETclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="net_0" />
+            <target ref="net_1" />
+            <label kind="synchronisation">CNreq0?</label>
+            <label kind="assignment">NETclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="net_2" />
+            <target ref="net_6" />
+            <label kind="synchronisation">RNrep1?</label>
+            <label kind="assignment">NETclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="net_4" />
+            <target ref="net_5" />
+            <label kind="guard">NETclk == NETd</label>
+            <label kind="synchronisation">NRreq1!</label>
+        </transition>
+    </template>
+    <template>
+        <name>RIO</name>
+        <declaration>clock zz;
+	clock RIOclk;</declaration>
+        <location id="rio_0">
+            <name>RIO1</name>
+        </location>
+        <location id="rio_1">
+            <name>RIO2</name>
+            <label kind="invariant">RIOclk &lt;= RIOd</label>
+        </location>
+        <location id="rio_2">
+            <name>RIO3</name>
+            <label kind="invariant">zz &lt;= 0</label>
+        </location>
+        <location id="rio_3">
+            <name>RIO4</name>
+            <label kind="invariant">RIOclk &lt;= RIOd</label>
+        </location>
+        <location id="rio_4">
+            <name>RIO5</name>
+            <label kind="invariant">zz &lt;= 0</label>
+        </location>
+        <location id="rio_5">
+            <name>RIO6</name>
+        </location>
+        <location id="rio_6">
+            <name>RIO7</name>
+            <label kind="invariant">RIOclk &lt;= RIOd</label>
+        </location>
+        <location id="rio_7">
+            <name>RIO8</name>
+            <label kind="invariant">zz &lt;= 0</label>
+        </location>
+        <location id="rio_8">
+            <name>RIO9</name>
+            <label kind="invariant">RIOclk &lt;= RIOd</label>
+        </location>
+        <location id="rio_9">
+            <name>RIO10</name>
+            <label kind="invariant">zz &lt;= 0</label>
+        </location>
+        <init ref="rio_0" />
+        <transition>
+            <source ref="rio_3" />
+            <target ref="rio_4" />
+            <label kind="guard">RIOclk == RIOd</label>
+            <label kind="synchronisation">SIGout0!</label>
+            <label kind="assignment">zz = 0</label>
+        </transition>
+        <transition>
+            <source ref="rio_5" />
+            <target ref="rio_6" />
+            <label kind="synchronisation">NRreq0?</label>
+            <label kind="assignment">RIOclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="rio_5" />
+            <target ref="rio_8" />
+            <label kind="synchronisation">NRreq1?</label>
+            <label kind="assignment">RIOclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="rio_9" />
+            <target ref="rio_5" />
+            <label kind="guard">zz &lt;= 0</label>
+            <label kind="synchronisation">RNrep1!</label>
+        </transition>
+        <transition>
+            <source ref="rio_4" />
+            <target ref="rio_5" />
+            <label kind="guard">zz &lt;= 0</label>
+            <label kind="synchronisation">RNrep0!</label>
+        </transition>
+        <transition>
+            <source ref="rio_6" />
+            <target ref="rio_7" />
+            <label kind="guard">RIOclk == RIOd</label>
+            <label kind="synchronisation">SIGout0!</label>
+            <label kind="assignment">zz = 0</label>
+        </transition>
+        <transition>
+            <source ref="rio_7" />
+            <target ref="rio_5" />
+            <label kind="guard">zz &lt;= 0</label>
+            <label kind="synchronisation">RNrep1!</label>
+        </transition>
+        <transition>
+            <source ref="rio_0" />
+            <target ref="rio_1" />
+            <label kind="synchronisation">NRreq0?</label>
+            <label kind="assignment">RIOclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="rio_8" />
+            <target ref="rio_9" />
+            <label kind="guard">RIOclk == RIOd</label>
+            <label kind="synchronisation">SIGout1!</label>
+            <label kind="assignment">zz = 0</label>
+        </transition>
+        <transition>
+            <source ref="rio_1" />
+            <target ref="rio_3" />
+            <label kind="synchronisation">SIGin1?</label>
+        </transition>
+        <transition>
+            <source ref="rio_1" />
+            <target ref="rio_2" />
+            <label kind="guard">RIOclk == RIOd</label>
+            <label kind="synchronisation">SIGout0!</label>
+            <label kind="assignment">zz = 0</label>
+        </transition>
+        <transition>
+            <source ref="rio_2" />
+            <target ref="rio_0" />
+            <label kind="guard">zz &lt;= 0</label>
+            <label kind="synchronisation">RNrep0!</label>
+        </transition>
+    </template>
+    <template>
+        <name>ENV</name>
+        <declaration>clock ENVclk;</declaration>
+        <location id="env_0">
+            <name>ENVinit</name>
+        </location>
+        <location id="env_1">
+            <name>ENV1</name>
+        </location>
+        <location id="env_2">
+            <name>ENV2</name>
+            <label kind="invariant">ENVclk &lt;= SIGmrt</label>
+        </location>
+        <location id="env_3">
+            <name>ENV4</name>
+            <label kind="invariant">yy &lt;= 0</label>
+        </location>
+        <location id="env_4">
+            <name>ENV5</name>
+            <label kind="invariant">yy &lt;= 0</label>
+        </location>
+        <init ref="env_0" />
+        <transition>
+            <source ref="env_2" />
+            <target ref="env_2" />
+            <label kind="synchronisation">SIGout0?</label>
+        </transition>
+        <transition>
+            <source ref="env_1" />
+            <target ref="env_1" />
+            <label kind="synchronisation">SIGout0?</label>
+        </transition>
+        <transition>
+            <source ref="env_2" />
+            <target ref="env_4" />
+            <label kind="guard">ENVclk == SIGmrt</label>
+            <label kind="assignment">yy = 0</label>
+        </transition>
+        <transition>
+            <source ref="env_0" />
+            <target ref="env_1" />
+            <label kind="synchronisation">SIGout0?</label>
+        </transition>
+        <transition>
+            <source ref="env_1" />
+            <target ref="env_2" />
+            <label kind="synchronisation">SIGin1!</label>
+            <label kind="assignment">ENVclk = 0</label>
+        </transition>
+        <transition>
+            <source ref="env_2" />
+            <target ref="env_3" />
+            <label kind="synchronisation">SIGout1?</label>
+            <label kind="assignment">yy = 0</label>
+        </transition>
+    </template>
+    <system>system PLC, COM, NET, RIO, ENV;</system>
+</nta>

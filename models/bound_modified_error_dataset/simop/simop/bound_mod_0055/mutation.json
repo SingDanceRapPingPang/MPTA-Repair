@@ -1,0 +1,45 @@
+{
+  "id": "bound_mod_0055",
+  "mutation_type": "bound_mod",
+  "description": "COM.COM2 invariant: COMclk <= COMd -> COMclk <= 0 (delta=-1)",
+  "source_model": "models\\curated_model_with_properties\\simop\\simop\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\simop\\simop\\simop_ref.q",
+  "template": "COM",
+  "owner_kind": "location",
+  "owner": "COM2",
+  "label_kind": "invariant",
+  "original": "COMclk <= COMd",
+  "mutated": "COMclk <= 0",
+  "old_bound_value": 1,
+  "old_bound_text": "COMd",
+  "new_bound": 0,
+  "delta": -1,
+  "violated_properties": [
+    {
+      "index": 1,
+      "formula": "E<> COM.COM4"
+    },
+    {
+      "index": 2,
+      "formula": "E<> RIO.RIO5"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "E<> COM.COM4",
+      "status": "not_satisfied",
+      "duration_sec": 0.074,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_8a4hiqu6\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "E<> RIO.RIO5",
+      "status": "not_satisfied",
+      "duration_sec": 0.077,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_lw4f8ugt\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

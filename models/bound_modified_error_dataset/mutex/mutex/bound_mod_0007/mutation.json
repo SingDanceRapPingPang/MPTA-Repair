@@ -1,0 +1,49 @@
+{
+  "id": "bound_mod_0007",
+  "mutation_type": "bound_mod",
+  "description": "S1.I_am_safe invariant: S1_z <= 1000 -> S1_z <= 1200 (delta=+200)",
+  "source_model": "models\\curated_model_with_properties\\mutex\\mutex\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\mutex\\mutex\\mutex_ref.q",
+  "template": "S1",
+  "owner_kind": "location",
+  "owner": "I_am_safe",
+  "label_kind": "invariant",
+  "original": "S1_z <= 1000",
+  "mutated": "S1_z <= 1200",
+  "old_bound_value": 1000,
+  "old_bound_text": "1000",
+  "new_bound": 1200,
+  "delta": 200,
+  "violated_properties": [
+    {
+      "index": 3,
+      "formula": "A[] not S1.I_am_safe or (S1_z <= 1000)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] not Ctrl.wait_for_s2 or (Ctrl_z <= 1000)",
+      "status": "satisfied",
+      "duration_sec": 0.392,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_5ne8zwtp\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not Ctrl.g1 or (Ctrl_z <= 1000)",
+      "status": "satisfied",
+      "duration_sec": 0.399,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_7iwbl13w\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not S1.I_am_safe or (S1_z <= 1000)",
+      "status": "not_satisfied",
+      "duration_sec": 0.056,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_frsdbv_3\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}

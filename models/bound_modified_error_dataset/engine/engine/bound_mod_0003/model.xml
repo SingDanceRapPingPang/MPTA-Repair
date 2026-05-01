@@ -1,0 +1,753 @@
+<?xml version='1.0' encoding='utf-8'?>
+<nta>
+    <declaration>// 1996-11-20, 1997-02-20, and 1997-07-31
+// @ Uppsala University.
+// Paul Pettersson, DoCS &amp; Magnus Lindahl, Mecel AB
+//
+// Engine
+int    UseCase;
+chan   ReqZeroTorque, TorqueZero, ReqSpeed;
+chan   SpeedSet, ReqTorque;
+// Clutch
+chan   OpenClutch, CloseClutch, ClutchIsOpen, ClutchIsClosed;
+// GearBox
+chan   ReqNeu, GearNeu, ReqSet, GearSet;
+// Gear
+int    FromGear, ToGear;
+chan   ReqNewGear, NewGear;
+// System Decoration
+int    ErrStat;
+clock  CTimer, ETimer, GBTimer, GCTimer, SysTimer;</declaration>
+    <template>
+        <name>Clutch</name>
+        <location id="clutch_0">
+            <name>Closed</name>
+        </location>
+        <location id="clutch_1">
+            <name>Closing</name>
+            <label kind="invariant">CTimer &lt;= 151</label>
+        </location>
+        <location id="clutch_2">
+            <name>ErrorClose</name>
+        </location>
+        <location id="clutch_3">
+            <name>ErrorOpen</name>
+        </location>
+        <location id="clutch_4">
+            <name>Open</name>
+        </location>
+        <location id="clutch_5">
+            <name>Opening</name>
+            <label kind="invariant">CTimer&lt;=150</label>
+        </location>
+        <init ref="clutch_0" />
+        <transition>
+            <source ref="clutch_0" />
+            <target ref="clutch_5" />
+            <label kind="synchronisation">OpenClutch?</label>
+            <label kind="assignment">CTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="clutch_1" />
+            <target ref="clutch_0" />
+            <label kind="guard">CTimer&gt;=100</label>
+            <label kind="synchronisation">ClutchIsClosed!</label>
+        </transition>
+        <transition>
+            <source ref="clutch_1" />
+            <target ref="clutch_2" />
+            <label kind="guard">CTimer==150</label>
+            <label kind="assignment">ErrStat=1</label>
+        </transition>
+        <transition>
+            <source ref="clutch_4" />
+            <target ref="clutch_1" />
+            <label kind="synchronisation">CloseClutch?</label>
+            <label kind="assignment">CTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="clutch_5" />
+            <target ref="clutch_3" />
+            <label kind="guard">CTimer==150</label>
+            <label kind="assignment">ErrStat=2</label>
+        </transition>
+        <transition>
+            <source ref="clutch_5" />
+            <target ref="clutch_4" />
+            <label kind="guard">CTimer&gt;=100</label>
+            <label kind="synchronisation">ClutchIsOpen!</label>
+        </transition>
+    </template>
+    <template>
+        <name>GearBox</name>
+        <location id="gearbox_0">
+            <name>Closing</name>
+            <label kind="invariant">GBTimer&lt;=300</label>
+        </location>
+        <location id="gearbox_1">
+            <name>ErrorIdle</name>
+        </location>
+        <location id="gearbox_2">
+            <name>ErrorNeu</name>
+        </location>
+        <location id="gearbox_3">
+            <name>Idle</name>
+        </location>
+        <location id="gearbox_4">
+            <name>Neutral</name>
+        </location>
+        <location id="gearbox_5">
+            <name>Opening</name>
+            <label kind="invariant">GBTimer&lt;=200</label>
+        </location>
+        <init ref="gearbox_4" />
+        <transition>
+            <source ref="gearbox_0" />
+            <target ref="gearbox_1" />
+            <label kind="guard">GBTimer==300</label>
+            <label kind="assignment">ErrStat=3</label>
+        </transition>
+        <transition>
+            <source ref="gearbox_0" />
+            <target ref="gearbox_3" />
+            <label kind="guard">GBTimer&gt;=100</label>
+            <label kind="synchronisation">GearSet!</label>
+        </transition>
+        <transition>
+            <source ref="gearbox_3" />
+            <target ref="gearbox_5" />
+            <label kind="synchronisation">ReqNeu?</label>
+            <label kind="assignment">GBTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearbox_4" />
+            <target ref="gearbox_0" />
+            <label kind="synchronisation">ReqSet?</label>
+            <label kind="assignment">GBTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearbox_5" />
+            <target ref="gearbox_2" />
+            <label kind="guard">GBTimer&gt;200</label>
+            <label kind="assignment">ErrStat=4</label>
+        </transition>
+        <transition>
+            <source ref="gearbox_5" />
+            <target ref="gearbox_4" />
+            <label kind="guard">GBTimer&gt;=100</label>
+            <label kind="synchronisation">GearNeu!</label>
+        </transition>
+    </template>
+    <template>
+        <name>GearControl</name>
+        <location id="gearcontrol_0">
+            <name>CCloseError</name>
+        </location>
+        <location id="gearcontrol_1">
+            <name>COpenError</name>
+        </location>
+        <location id="gearcontrol_2">
+            <name>CheckClutch</name>
+            <label kind="invariant">GCTimer&lt;=200</label>
+        </location>
+        <location id="gearcontrol_3">
+            <name>CheckClutch2</name>
+            <label kind="invariant">GCTimer&lt;=200</label>
+        </location>
+        <location id="gearcontrol_4">
+            <name>CheckClutchClosed</name>
+            <label kind="invariant">GCTimer&lt;=200</label>
+        </location>
+        <location id="gearcontrol_5">
+            <name>CheckClutchClosed2</name>
+            <label kind="invariant">GCTimer&lt;=200</label>
+        </location>
+        <location id="gearcontrol_6">
+            <name>CheckGearNeu</name>
+            <label kind="invariant">GCTimer&lt;=250</label>
+        </location>
+        <location id="gearcontrol_7">
+            <name>CheckGearNeu2</name>
+            <label kind="invariant">GCTimer&lt;=250</label>
+        </location>
+        <location id="gearcontrol_8">
+            <name>CheckGearSet1</name>
+            <label kind="invariant">GCTimer&lt;=350</label>
+        </location>
+        <location id="gearcontrol_9">
+            <name>CheckGearSet2</name>
+            <label kind="invariant">GCTimer&lt;=350</label>
+        </location>
+        <location id="gearcontrol_10">
+            <name>CheckSyncSpeed</name>
+            <label kind="invariant">GCTimer&lt;=155</label>
+        </location>
+        <location id="gearcontrol_11">
+            <name>CheckTorque</name>
+            <label kind="invariant">GCTimer&lt;=255</label>
+        </location>
+        <location id="gearcontrol_12">
+            <name>ClutchClose</name>
+            <committed />
+        </location>
+        <location id="gearcontrol_13">
+            <name>ClutchOpen</name>
+            <committed />
+        </location>
+        <location id="gearcontrol_14">
+            <name>ClutchOpen2</name>
+            <committed />
+        </location>
+        <location id="gearcontrol_15">
+            <name>GNeuError</name>
+        </location>
+        <location id="gearcontrol_16">
+            <name>GSetError</name>
+        </location>
+        <location id="gearcontrol_17">
+            <name>Gear</name>
+        </location>
+        <location id="gearcontrol_18">
+            <name>GearChanged</name>
+            <committed />
+        </location>
+        <location id="gearcontrol_19">
+            <name>Initiate</name>
+            <committed />
+        </location>
+        <location id="gearcontrol_20">
+            <name>ReqNeuGear</name>
+            <committed />
+        </location>
+        <location id="gearcontrol_21">
+            <name>ReqSetGear</name>
+            <committed />
+        </location>
+        <location id="gearcontrol_22">
+            <name>ReqSetGear2</name>
+            <committed />
+        </location>
+        <location id="gearcontrol_23">
+            <name>ReqSyncSpeed</name>
+            <committed />
+        </location>
+        <location id="gearcontrol_24">
+            <name>ReqTorqueC</name>
+            <committed />
+        </location>
+        <init ref="gearcontrol_17" />
+        <transition>
+            <source ref="gearcontrol_2" />
+            <target ref="gearcontrol_1" />
+            <label kind="guard">GCTimer&gt;150 &amp;&amp; GCTimer&lt;=200</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_2" />
+            <target ref="gearcontrol_13" />
+            <label kind="synchronisation">ClutchIsOpen?</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_3" />
+            <target ref="gearcontrol_1" />
+            <label kind="guard">GCTimer&gt;150 &amp;&amp; GCTimer&lt;=200</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_3" />
+            <target ref="gearcontrol_14" />
+            <label kind="synchronisation">ClutchIsOpen?</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_4" />
+            <target ref="gearcontrol_0" />
+            <label kind="guard">GCTimer&gt;150 &amp;&amp; GCTimer&lt;=200</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_4" />
+            <target ref="gearcontrol_24" />
+            <label kind="synchronisation">ClutchIsClosed?</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_5" />
+            <target ref="gearcontrol_0" />
+            <label kind="guard">GCTimer&gt;150 &amp;&amp; GCTimer&lt;=200</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_5" />
+            <target ref="gearcontrol_18" />
+            <label kind="synchronisation">ClutchIsClosed?</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_6" />
+            <target ref="gearcontrol_15" />
+            <label kind="guard">GCTimer&gt;200 &amp;&amp; GCTimer&lt;=250</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_6" />
+            <target ref="gearcontrol_23" />
+            <label kind="synchronisation">GearNeu?</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_7" />
+            <target ref="gearcontrol_15" />
+            <label kind="guard">GCTimer&gt;200 &amp;&amp; GCTimer&lt;=250</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_7" />
+            <target ref="gearcontrol_22" />
+            <label kind="synchronisation">GearNeu?</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_8" />
+            <target ref="gearcontrol_16" />
+            <label kind="guard">GCTimer&gt;300 &amp;&amp; GCTimer&lt;=350</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_8" />
+            <target ref="gearcontrol_24" />
+            <label kind="synchronisation">GearSet?</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_9" />
+            <target ref="gearcontrol_12" />
+            <label kind="synchronisation">GearSet?</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_9" />
+            <target ref="gearcontrol_16" />
+            <label kind="guard">GCTimer&gt;300 &amp;&amp; GCTimer&lt;=350</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_10" />
+            <target ref="gearcontrol_2" />
+            <label kind="guard">GCTimer&gt;=150</label>
+            <label kind="synchronisation">OpenClutch!</label>
+            <label kind="assignment">GCTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_10" />
+            <target ref="gearcontrol_21" />
+            <label kind="guard">GCTimer&lt;150</label>
+            <label kind="synchronisation">SpeedSet?</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_11" />
+            <target ref="gearcontrol_3" />
+            <label kind="guard">GCTimer&gt;=250</label>
+            <label kind="synchronisation">OpenClutch!</label>
+            <label kind="assignment">GCTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_11" />
+            <target ref="gearcontrol_20" />
+            <label kind="guard">GCTimer&lt;250</label>
+            <label kind="synchronisation">TorqueZero?</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_12" />
+            <target ref="gearcontrol_4" />
+            <label kind="synchronisation">CloseClutch!</label>
+            <label kind="assignment">GCTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_13" />
+            <target ref="gearcontrol_9" />
+            <label kind="synchronisation">ReqSet!</label>
+            <label kind="assignment">GCTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_14" />
+            <target ref="gearcontrol_7" />
+            <label kind="synchronisation">ReqNeu!</label>
+            <label kind="assignment">GCTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_17" />
+            <target ref="gearcontrol_19" />
+            <label kind="synchronisation">ReqNewGear?</label>
+            <label kind="assignment">SysTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_18" />
+            <target ref="gearcontrol_17" />
+            <label kind="synchronisation">NewGear!</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_19" />
+            <target ref="gearcontrol_11" />
+            <label kind="guard">FromGear&gt;0</label>
+            <label kind="synchronisation">ReqZeroTorque!</label>
+            <label kind="assignment">GCTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_19" />
+            <target ref="gearcontrol_23" />
+            <label kind="guard">FromGear&lt;=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_20" />
+            <target ref="gearcontrol_6" />
+            <label kind="synchronisation">ReqNeu!</label>
+            <label kind="assignment">GCTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_21" />
+            <target ref="gearcontrol_8" />
+            <label kind="synchronisation">ReqSet!</label>
+            <label kind="assignment">GCTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_22" />
+            <target ref="gearcontrol_5" />
+            <label kind="guard">ToGear==0</label>
+            <label kind="synchronisation">CloseClutch!</label>
+            <label kind="assignment">GCTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_22" />
+            <target ref="gearcontrol_9" />
+            <label kind="guard">ToGear&gt;0</label>
+            <label kind="synchronisation">ReqSet!</label>
+            <label kind="assignment">GCTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_23" />
+            <target ref="gearcontrol_10" />
+            <label kind="guard">ToGear&gt;0</label>
+            <label kind="synchronisation">ReqSpeed!</label>
+            <label kind="assignment">GCTimer=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_23" />
+            <target ref="gearcontrol_18" />
+            <label kind="guard">ToGear&lt;=0</label>
+        </transition>
+        <transition>
+            <source ref="gearcontrol_24" />
+            <target ref="gearcontrol_18" />
+            <label kind="synchronisation">ReqTorque!</label>
+        </transition>
+    </template>
+    <template>
+        <name>Interface</name>
+        <location id="interface_0">
+            <name>Gear1</name>
+        </location>
+        <location id="interface_1">
+            <name>Gear2</name>
+        </location>
+        <location id="interface_2">
+            <name>Gear3</name>
+        </location>
+        <location id="interface_3">
+            <name>Gear4</name>
+        </location>
+        <location id="interface_4">
+            <name>Gear5</name>
+        </location>
+        <location id="interface_5">
+            <name>GearN</name>
+        </location>
+        <location id="interface_6">
+            <name>GearR</name>
+        </location>
+        <location id="interface_7">
+            <name>chkGear12</name>
+        </location>
+        <location id="interface_8">
+            <name>chkGear1N</name>
+        </location>
+        <location id="interface_9">
+            <name>chkGear21</name>
+        </location>
+        <location id="interface_10">
+            <name>chkGear23</name>
+        </location>
+        <location id="interface_11">
+            <name>chkGear32</name>
+        </location>
+        <location id="interface_12">
+            <name>chkGear34</name>
+        </location>
+        <location id="interface_13">
+            <name>chkGear43</name>
+        </location>
+        <location id="interface_14">
+            <name>chkGear45</name>
+        </location>
+        <location id="interface_15">
+            <name>chkGear54</name>
+        </location>
+        <location id="interface_16">
+            <name>chkGearN1</name>
+        </location>
+        <location id="interface_17">
+            <name>chkGearNR</name>
+        </location>
+        <location id="interface_18">
+            <name>chkGearRN</name>
+        </location>
+        <init ref="interface_5" />
+        <transition>
+            <source ref="interface_0" />
+            <target ref="interface_7" />
+            <label kind="synchronisation">ReqNewGear!</label>
+            <label kind="assignment">FromGear=1,
+ToGear=2</label>
+        </transition>
+        <transition>
+            <source ref="interface_0" />
+            <target ref="interface_8" />
+            <label kind="synchronisation">ReqNewGear!</label>
+            <label kind="assignment">FromGear=1,ToGear=0</label>
+        </transition>
+        <transition>
+            <source ref="interface_1" />
+            <target ref="interface_9" />
+            <label kind="synchronisation">ReqNewGear!</label>
+            <label kind="assignment">FromGear=2,
+ToGear=1</label>
+        </transition>
+        <transition>
+            <source ref="interface_1" />
+            <target ref="interface_10" />
+            <label kind="synchronisation">ReqNewGear!</label>
+            <label kind="assignment">FromGear=2,
+ToGear=3</label>
+        </transition>
+        <transition>
+            <source ref="interface_2" />
+            <target ref="interface_11" />
+            <label kind="synchronisation">ReqNewGear!</label>
+            <label kind="assignment">FromGear=3,
+ToGear=2</label>
+        </transition>
+        <transition>
+            <source ref="interface_2" />
+            <target ref="interface_12" />
+            <label kind="synchronisation">ReqNewGear!</label>
+            <label kind="assignment">FromGear=3,
+ToGear=4</label>
+        </transition>
+        <transition>
+            <source ref="interface_3" />
+            <target ref="interface_13" />
+            <label kind="synchronisation">ReqNewGear!</label>
+            <label kind="assignment">FromGear=4,
+ToGear=3</label>
+        </transition>
+        <transition>
+            <source ref="interface_3" />
+            <target ref="interface_14" />
+            <label kind="synchronisation">ReqNewGear!</label>
+            <label kind="assignment">FromGear=4,
+ToGear=5</label>
+        </transition>
+        <transition>
+            <source ref="interface_4" />
+            <target ref="interface_15" />
+            <label kind="synchronisation">ReqNewGear!</label>
+            <label kind="assignment">FromGear=5,
+ToGear=4</label>
+        </transition>
+        <transition>
+            <source ref="interface_5" />
+            <target ref="interface_16" />
+            <label kind="synchronisation">ReqNewGear!</label>
+            <label kind="assignment">FromGear=0,ToGear=1</label>
+        </transition>
+        <transition>
+            <source ref="interface_5" />
+            <target ref="interface_17" />
+            <label kind="synchronisation">ReqNewGear!</label>
+            <label kind="assignment">FromGear=0,
+ToGear=6</label>
+        </transition>
+        <transition>
+            <source ref="interface_6" />
+            <target ref="interface_18" />
+            <label kind="synchronisation">ReqNewGear!</label>
+            <label kind="assignment">FromGear=6,
+ToGear=0</label>
+        </transition>
+        <transition>
+            <source ref="interface_7" />
+            <target ref="interface_1" />
+            <label kind="synchronisation">NewGear?</label>
+        </transition>
+        <transition>
+            <source ref="interface_8" />
+            <target ref="interface_5" />
+            <label kind="synchronisation">NewGear?</label>
+        </transition>
+        <transition>
+            <source ref="interface_9" />
+            <target ref="interface_0" />
+            <label kind="synchronisation">NewGear?</label>
+        </transition>
+        <transition>
+            <source ref="interface_10" />
+            <target ref="interface_2" />
+            <label kind="synchronisation">NewGear?</label>
+        </transition>
+        <transition>
+            <source ref="interface_11" />
+            <target ref="interface_1" />
+            <label kind="synchronisation">NewGear?</label>
+        </transition>
+        <transition>
+            <source ref="interface_12" />
+            <target ref="interface_3" />
+            <label kind="synchronisation">NewGear?</label>
+        </transition>
+        <transition>
+            <source ref="interface_13" />
+            <target ref="interface_2" />
+            <label kind="synchronisation">NewGear?</label>
+        </transition>
+        <transition>
+            <source ref="interface_14" />
+            <target ref="interface_4" />
+            <label kind="synchronisation">NewGear?</label>
+        </transition>
+        <transition>
+            <source ref="interface_15" />
+            <target ref="interface_3" />
+            <label kind="synchronisation">NewGear?</label>
+        </transition>
+        <transition>
+            <source ref="interface_16" />
+            <target ref="interface_0" />
+            <label kind="synchronisation">NewGear?</label>
+        </transition>
+        <transition>
+            <source ref="interface_17" />
+            <target ref="interface_6" />
+            <label kind="synchronisation">NewGear?</label>
+        </transition>
+        <transition>
+            <source ref="interface_18" />
+            <target ref="interface_5" />
+            <label kind="synchronisation">NewGear?</label>
+        </transition>
+    </template>
+    <template>
+        <name>Engine</name>
+        <location id="engine_0">
+            <name>ClutchClose</name>
+            <label kind="invariant">ETimer&lt;=900</label>
+        </location>
+        <location id="engine_1">
+            <name>ClutchOpen</name>
+            <committed />
+        </location>
+        <location id="engine_2">
+            <name>DecTorque</name>
+            <label kind="invariant">ETimer&lt;=400</label>
+        </location>
+        <location id="engine_3">
+            <name>ErrorSpeed</name>
+        </location>
+        <location id="engine_4">
+            <name>FindSpeed</name>
+            <label kind="invariant">ETimer&lt;=200</label>
+        </location>
+        <location id="engine_5">
+            <name>Initial</name>
+        </location>
+        <location id="engine_6">
+            <name>Speed</name>
+            <label kind="invariant">ETimer&lt;=500</label>
+        </location>
+        <location id="engine_7">
+            <name>Torque</name>
+        </location>
+        <location id="engine_8">
+            <name>Zero</name>
+        </location>
+        <init ref="engine_5" />
+        <transition>
+            <source ref="engine_0" />
+            <target ref="engine_3" />
+            <label kind="guard">ETimer==900</label>
+        </transition>
+        <transition>
+            <source ref="engine_0" />
+            <target ref="engine_7" />
+            <label kind="guard">ETimer&gt;=50</label>
+            <label kind="synchronisation">ReqTorque?</label>
+        </transition>
+        <transition>
+            <source ref="engine_1" />
+            <target ref="engine_0" />
+            <label kind="guard">ToGear&gt;0</label>
+            <label kind="assignment">ETimer=0</label>
+        </transition>
+        <transition>
+            <source ref="engine_1" />
+            <target ref="engine_5" />
+            <label kind="guard">ToGear==0</label>
+        </transition>
+        <transition>
+            <source ref="engine_2" />
+            <target ref="engine_1" />
+            <label kind="guard">ETimer==400</label>
+            <label kind="assignment">UseCase=1</label>
+        </transition>
+        <transition>
+            <source ref="engine_2" />
+            <target ref="engine_8" />
+            <label kind="guard">ETimer&gt;=150</label>
+            <label kind="synchronisation">TorqueZero!</label>
+        </transition>
+        <transition>
+            <source ref="engine_4" />
+            <target ref="engine_1" />
+            <label kind="guard">ETimer==200</label>
+            <label kind="assignment">UseCase=2</label>
+        </transition>
+        <transition>
+            <source ref="engine_4" />
+            <target ref="engine_6" />
+            <label kind="guard">ETimer&gt;=50</label>
+            <label kind="synchronisation">SpeedSet!</label>
+            <label kind="assignment">ETimer=0</label>
+        </transition>
+        <transition>
+            <source ref="engine_5" />
+            <target ref="engine_4" />
+            <label kind="synchronisation">ReqSpeed?</label>
+            <label kind="assignment">ETimer=0,
+UseCase=0</label>
+        </transition>
+        <transition>
+            <source ref="engine_6" />
+            <target ref="engine_3" />
+            <label kind="guard">ETimer==500</label>
+        </transition>
+        <transition>
+            <source ref="engine_6" />
+            <target ref="engine_7" />
+            <label kind="guard">ETimer&lt;500</label>
+            <label kind="synchronisation">ReqTorque?</label>
+        </transition>
+        <transition>
+            <source ref="engine_7" />
+            <target ref="engine_2" />
+            <label kind="synchronisation">ReqZeroTorque?</label>
+            <label kind="assignment">ETimer=0,UseCase=0</label>
+        </transition>
+        <transition>
+            <source ref="engine_8" />
+            <target ref="engine_4" />
+            <label kind="guard">ToGear&gt;0</label>
+            <label kind="synchronisation">ReqSpeed?</label>
+            <label kind="assignment">ETimer=0</label>
+        </transition>
+        <transition>
+            <source ref="engine_8" />
+            <target ref="engine_5" />
+            <label kind="guard">ToGear==0</label>
+        </transition>
+    </template>
+    <system>system GearControl, Interface, Engine, GearBox, Clutch;</system>
+</nta>

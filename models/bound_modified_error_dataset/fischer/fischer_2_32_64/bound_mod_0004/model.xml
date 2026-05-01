@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<nta>
+    <declaration>const int N = 2;
+
+typedef int[1, N] id_t;
+int id;</declaration>
+    <template>
+        <name>P</name>
+        <parameter>const id_t pid</parameter>
+        <declaration>clock x;
+	const int a = 32;
+	const int b = 64;</declaration>
+        <location id="p_0">
+            <name>wait</name>
+        </location>
+        <location id="p_1">
+            <name>req</name>
+            <label kind="invariant">x &lt;= 38</label>
+        </location>
+        <location id="p_2">
+            <name>A</name>
+        </location>
+        <location id="p_3">
+            <name>cs</name>
+        </location>
+        <init ref="p_2" />
+        <transition>
+            <source ref="p_2" />
+            <target ref="p_1" />
+            <label kind="guard">id == 0</label>
+            <label kind="assignment">x = 0</label>
+        </transition>
+        <transition>
+            <source ref="p_1" />
+            <target ref="p_0" />
+            <label kind="assignment">x = 0, id = pid</label>
+        </transition>
+        <transition>
+            <source ref="p_0" />
+            <target ref="p_1" />
+            <label kind="guard">id == 0</label>
+            <label kind="assignment">x = 0</label>
+        </transition>
+        <transition>
+            <source ref="p_0" />
+            <target ref="p_3" />
+            <label kind="guard">x &gt;= b &amp;&amp; id == pid</label>
+        </transition>
+        <transition>
+            <source ref="p_3" />
+            <target ref="p_2" />
+            <label kind="assignment">id = 0</label>
+        </transition>
+    </template>
+    <system>system P;</system>
+</nta>

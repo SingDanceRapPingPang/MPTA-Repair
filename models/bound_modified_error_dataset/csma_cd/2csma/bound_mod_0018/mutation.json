@@ -1,0 +1,53 @@
+{
+  "id": "bound_mod_0018",
+  "mutation_type": "bound_mod",
+  "description": "P0.id1->id2 guard: x < 26 -> x < 834 (delta=+808)",
+  "source_model": "models\\curated_model_with_properties\\csma_cd\\2csma\\model.xml",
+  "source_properties": "models\\curated_model_with_properties\\csma_cd\\2csma\\2csma_ref.q",
+  "template": "P0",
+  "owner_kind": "transition",
+  "owner": "id1->id2",
+  "label_kind": "guard",
+  "original": "x < 26",
+  "mutated": "x < 834",
+  "old_bound_value": 26,
+  "old_bound_text": "26",
+  "new_bound": 834,
+  "delta": 808,
+  "violated_properties": [
+    {
+      "index": 1,
+      "formula": "A[] not P1.sender_transm or not P2.sender_transm or (P1.x < 52)"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not P1.sender_transm or (p2t == 0) or (P1.x < 52)"
+    }
+  ],
+  "verification_results": [
+    {
+      "index": 1,
+      "formula": "A[] not P1.sender_transm or not P2.sender_transm or (P1.x < 52)",
+      "status": "not_satisfied",
+      "duration_sec": 0.056,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_b028l3di\\property.q:1\n -- Formula is NOT satisfied.\n"
+    },
+    {
+      "index": 2,
+      "formula": "A[] not P0.bus_collision1 or (P0.x < 26)",
+      "status": "satisfied",
+      "duration_sec": 0.05,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_88whmvgb\\property.q:1\n -- Formula is satisfied.\n"
+    },
+    {
+      "index": 3,
+      "formula": "A[] not P1.sender_transm or (p2t == 0) or (P1.x < 52)",
+      "status": "not_satisfied",
+      "duration_sec": 0.063,
+      "exit_code": 0,
+      "output_tail": "\nVerifying formula 1 at C:\\Users\\20566\\AppData\\Local\\Temp\\uppaal_query_79gpw50d\\property.q:1\n -- Formula is NOT satisfied.\n"
+    }
+  ]
+}
