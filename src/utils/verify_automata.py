@@ -5,6 +5,7 @@ from __future__ import annotations
 import subprocess
 import tempfile
 import time
+import os
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -25,6 +26,33 @@ class VerificationResult:
         return self.status == "satisfied"
 
 
+def run_verifyta_command(args: list[str], timeout: int) -> tuple[str, int | None, bool]:
+    """Run verifyta and reliably clean up the process tree on timeout."""
+    proc = subprocess.Popen(
+        args,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    try:
+        output, _ = proc.communicate(timeout=timeout)
+        return output, proc.returncode, False
+    except subprocess.TimeoutExpired:
+        if os.name == "nt":
+            subprocess.run(
+                ["taskkill", "/F", "/T", "/PID", str(proc.pid)],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                check=False,
+            )
+        else:
+            proc.kill()
+        output, _ = proc.communicate()
+        return output or "", None, True
+
+
 def verify_property(
     model_path: str | Path,
     formula: str,
@@ -42,28 +70,20 @@ def verify_property(
         query_path.write_text(formula.strip() + "\n", encoding="utf-8")
 
         start = time.time()
-        try:
-            proc = subprocess.run(
-                [str(verifyta_path), *options, str(model_path), str(query_path)],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                text=True,
-                encoding="utf-8",
-                errors="replace",
-                timeout=timeout,
-            )
-            output = proc.stdout
-            lower = output.lower()
-            if "formula is satisfied" in lower:
-                status = "satisfied"
-            elif "formula is not satisfied" in lower:
-                status = "not_satisfied"
-            else:
-                status = "error"
-            return VerificationResult(formula, status, round(time.time() - start, 3), proc.returncode, output)
-        except subprocess.TimeoutExpired as exc:
-            output = exc.stdout if isinstance(exc.stdout, str) else ""
+        output, returncode, timed_out = run_verifyta_command(
+            [str(verifyta_path), *options, str(model_path), str(query_path)],
+            timeout,
+        )
+        if timed_out:
             return VerificationResult(formula, "timeout", float(timeout), None, output)
+        lower = output.lower()
+        if "formula is satisfied" in lower:
+            status = "satisfied"
+        elif "formula is not satisfied" in lower:
+            status = "not_satisfied"
+        else:
+            status = "error"
+        return VerificationResult(formula, status, round(time.time() - start, 3), returncode, output)
 
 
 def verify_query_file(
@@ -77,25 +97,17 @@ def verify_query_file(
     query_path = Path(query_path)
     verifyta_path = Path(verifyta_path)
     start = time.time()
-    try:
-        proc = subprocess.run(
-            [str(verifyta_path), "-q", "-s", str(model_path), str(query_path)],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=timeout,
-        )
-        output = proc.stdout
-        lower = output.lower()
-        if "formula is not satisfied" in lower:
-            status = "not_satisfied"
-        elif "error]" in lower or proc.returncode not in (0,):
-            status = "error"
-        else:
-            status = "satisfied"
-        return VerificationResult(str(query_path), status, round(time.time() - start, 3), proc.returncode, output)
-    except subprocess.TimeoutExpired as exc:
-        output = exc.stdout if isinstance(exc.stdout, str) else ""
+    output, returncode, timed_out = run_verifyta_command(
+        [str(verifyta_path), "-q", "-s", str(model_path), str(query_path)],
+        timeout,
+    )
+    if timed_out:
         return VerificationResult(str(query_path), "timeout", float(timeout), None, output)
+    lower = output.lower()
+    if "formula is not satisfied" in lower:
+        status = "not_satisfied"
+    elif "error]" in lower or returncode not in (0,):
+        status = "error"
+    else:
+        status = "satisfied"
+    return VerificationResult(str(query_path), status, round(time.time() - start, 3), returncode, output)
